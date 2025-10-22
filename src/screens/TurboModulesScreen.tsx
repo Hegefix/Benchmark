@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   useColorScheme,
 } from 'react-native';
 
@@ -19,7 +18,7 @@ export const TurboModulesScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container, backgroundStyle]}>
       <View style={styles.content}>
         <Text style={[styles.title, textStyle]}>Turbo Modules</Text>
         <Text style={[styles.description, textStyle]}>
@@ -31,7 +30,7 @@ export const TurboModulesScreen = () => {
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

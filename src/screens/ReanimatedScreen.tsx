@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  useColorScheme,
-} from 'react-native';
+import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 
 export const ReanimatedScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,7 +13,7 @@ export const ReanimatedScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container, backgroundStyle]}>
       <View style={styles.content}>
         <Text style={[styles.title, textStyle]}>Reanimated Examples</Text>
         <Text style={[styles.description, textStyle]}>
@@ -31,7 +25,7 @@ export const ReanimatedScreen = () => {
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -67,4 +61,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-

@@ -6,7 +6,6 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const WelcomeScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,7 +19,7 @@ export const WelcomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container, backgroundStyle]}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View style={styles.content}>
         <Text style={[styles.title, textStyle]}>Welcome to Benchmark</Text>
@@ -41,7 +40,7 @@ export const WelcomeScreen = () => {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

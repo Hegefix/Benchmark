@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   useColorScheme,
   TouchableOpacity,
 } from 'react-native';
@@ -12,7 +11,7 @@ interface HomeScreenProps {
   navigation: any;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -24,7 +23,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container, backgroundStyle]}>
       <View style={styles.content}>
         <Text style={[styles.title, textStyle]}>Home Screen</Text>
         <Text style={[styles.description, textStyle]}>
@@ -34,24 +33,27 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Reanimated')}>
+            onPress={() => navigation.navigate('Reanimated')}
+          >
             <Text style={styles.buttonText}>Reanimated Examples</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('TurboModules')}>
+            onPress={() => navigation.navigate('TurboModules')}
+          >
             <Text style={styles.buttonText}>Turbo Modules</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Settings')}>
+            onPress={() => navigation.navigate('Settings')}
+          >
             <Text style={styles.buttonText}>Settings</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -93,4 +95,3 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-

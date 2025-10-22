@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   useColorScheme,
   ScrollView,
 } from 'react-native';
@@ -24,7 +23,7 @@ export const SettingsScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container, backgroundStyle]}>
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={[styles.title, textStyle]}>Settings</Text>
 
@@ -53,7 +52,7 @@ export const SettingsScreen = () => {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
