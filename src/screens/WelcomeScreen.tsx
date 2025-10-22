@@ -3,10 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   useColorScheme,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const WelcomeScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -51,7 +51,7 @@ interface InfoCardProps {
   isDarkMode: boolean;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({title, version, isDarkMode}) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, version, isDarkMode }) => {
   const cardStyle = {
     backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
   };
@@ -115,4 +115,3 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
-

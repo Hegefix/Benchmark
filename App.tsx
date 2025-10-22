@@ -1,15 +1,13 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
+ * Benchmark - Learning Reanimated & Turbo Modules
  * @format
  */
 
 import React from 'react';
-import {WelcomeScreen} from './src/screens';
+import {Navigation} from './src/navigation/RootNavigator';
 
 function App() {
-  return <WelcomeScreen />;
+  return <Navigation />;
 }
 
 export default App;
