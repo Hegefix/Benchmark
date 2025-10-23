@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import {Navigation} from './src/navigation/RootNavigator';
+import { Navigation } from '@navigation/RootNavigator';
 
 function App() {
   return <Navigation />;

@@ -1,12 +1,12 @@
-import {createStaticNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createStaticNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   WelcomeScreen,
   HomeScreen,
   ReanimatedScreen,
   TurboModulesScreen,
   SettingsScreen,
-} from '../screens';
+} from '@screens';
 
 // Define the navigation configuration using Static API (React Navigation v7)
 const RootStack = createNativeStackNavigator({
@@ -51,4 +51,3 @@ const RootStack = createNativeStackNavigator({
 
 // Create the static navigation component
 export const Navigation = createStaticNavigation(RootStack);
-
