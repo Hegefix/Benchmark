@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "cd ios && pod install",
+    "pods": "cd ios && pod install",
+    "setup": "yarn install && yarn pods"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.82.1",

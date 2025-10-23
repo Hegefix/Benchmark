@@ -62,7 +62,11 @@ interface SettingRowProps {
   isDarkMode: boolean;
 }
 
-const SettingRow: React.FC<SettingRowProps> = ({label, value, isDarkMode}) => {
+const SettingRow: React.FC<SettingRowProps> = ({
+  label,
+  value,
+  isDarkMode,
+}) => {
   const textStyle = {
     color: isDarkMode ? '#ffffff' : '#000000',
   };
@@ -115,4 +119,3 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
-

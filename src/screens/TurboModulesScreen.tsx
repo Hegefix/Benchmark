@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 
 export const TurboModulesScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -66,4 +61,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
