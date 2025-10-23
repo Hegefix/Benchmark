@@ -1,66 +1,38 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  useColorScheme,
-  ScrollView,
-} from 'react-native';
-import { SettingRow } from '@components';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SettingRow, ScreenContainer } from '@components';
+import { useTheme } from '@hooks';
 
 export const SettingsScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#1a1a1a' : '#ffffff',
-  };
-
-  const textStyle = {
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
-
-  const cardStyle = {
-    backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
-  };
+  const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, backgroundStyle]}>
+    <ScreenContainer>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[styles.title, textStyle]}>Settings</Text>
+        <Text style={[styles.title, { color: colors.text }]}>Settings</Text>
 
-        <View style={[styles.section, cardStyle]}>
-          <Text style={[styles.sectionTitle, textStyle]}>About</Text>
-          <SettingRow label="Version" value="1.0.0" isDarkMode={isDarkMode} />
-          <SettingRow
-            label="React Native"
-            value="0.82.1"
-            isDarkMode={isDarkMode}
-          />
-          <SettingRow label="Node.js" value="20.19.5" isDarkMode={isDarkMode} />
+        <View style={[styles.section, { backgroundColor: colors.card }]}>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>
+            About
+          </Text>
+          <SettingRow label="Version" value="1.0.0" />
+          <SettingRow label="React Native" value="0.82.1" />
+          <SettingRow label="Node.js" value="20.19.5" />
         </View>
 
-        <View style={[styles.section, cardStyle]}>
-          <Text style={[styles.sectionTitle, textStyle]}>Learning Topics</Text>
-          <SettingRow
-            label="Reanimated"
-            value="Ready"
-            isDarkMode={isDarkMode}
-          />
-          <SettingRow
-            label="Turbo Modules"
-            value="Ready"
-            isDarkMode={isDarkMode}
-          />
+        <View style={[styles.section, { backgroundColor: colors.card }]}>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>
+            Learning Topics
+          </Text>
+          <SettingRow label="Reanimated" value="Ready" />
+          <SettingRow label="Turbo Modules" value="Ready" />
         </View>
       </ScrollView>
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   content: {
     padding: 20,
   },

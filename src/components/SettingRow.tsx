@@ -1,25 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '@hooks';
 
 interface SettingRowProps {
   label: string;
   value: string;
-  isDarkMode: boolean;
 }
 
-export const SettingRow = ({ label, value, isDarkMode }: SettingRowProps) => {
-  const textStyle = {
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
-
-  const valueStyle = {
-    color: isDarkMode ? '#a0a0a0' : '#666666',
-  };
+export const SettingRow = ({ label, value }: SettingRowProps) => {
+  const { colors } = useTheme();
 
   return (
     <View style={styles.row}>
-      <Text style={[styles.label, textStyle]}>{label}</Text>
-      <Text style={[styles.value, valueStyle]}>{value}</Text>
+      <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
+      <Text style={[styles.value, { color: colors.textSecondary }]}>
+        {value}
+      </Text>
     </View>
   );
 };

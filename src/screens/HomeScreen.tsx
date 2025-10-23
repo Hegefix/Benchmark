@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
-import { Button } from '@components';
+import { Button, ScreenContainer } from '@components';
+import { useTheme } from '@hooks';
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -14,21 +15,13 @@ type RootStackParamList = {
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#1a1a1a' : '#ffffff',
-  };
-
-  const textStyle = {
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
+  const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, backgroundStyle]}>
+    <ScreenContainer>
       <View style={styles.content}>
-        <Text style={[styles.title, textStyle]}>Home Screen</Text>
-        <Text style={[styles.description, textStyle]}>
+        <Text style={[styles.title, { color: colors.text }]}>Home Screen</Text>
+        <Text style={[styles.description, { color: colors.text }]}>
           Welcome to the Benchmark app!
         </Text>
 
@@ -52,14 +45,11 @@ export const HomeScreen = () => {
           />
         </View>
       </View>
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   content: {
     flex: 1,
     justifyContent: 'center',

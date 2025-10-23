@@ -77,6 +77,26 @@ import { Button } from '@components';
 - ✅ React Navigation handles safe areas automatically
 - ✅ Use regular `View` components with `flex: 1`
 
+### StyleSheet Management
+
+- ❌ NEVER leave unused styles in StyleSheet.create()
+- ✅ Remove any style definitions that are not referenced in the component
+- ✅ Keep styles clean and minimal
+- ✅ Regularly audit and clean up unused styles
+
+```tsx
+// ❌ Bad - unused styles
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  unused: { padding: 10 }, // Not used anywhere
+});
+
+// ✅ Good - only used styles
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+});
+```
+
 ## Git Workflow
 
 ### Commits and Pushes

@@ -1,38 +1,33 @@
 import React from 'react';
-import { View, Text, StyleSheet, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { ScreenContainer } from '@components';
+import { useTheme } from '@hooks';
 
 export const ReanimatedScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#1a1a1a' : '#ffffff',
-  };
-
-  const textStyle = {
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
+  const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, backgroundStyle]}>
+    <ScreenContainer>
       <View style={styles.content}>
-        <Text style={[styles.title, textStyle]}>Reanimated Examples</Text>
-        <Text style={[styles.description, textStyle]}>
+        <Text style={[styles.title, { color: colors.text }]}>
+          Reanimated Examples
+        </Text>
+        <Text style={[styles.description, { color: colors.text }]}>
           Learn React Native Reanimated animations here
         </Text>
-        <View style={styles.placeholder}>
-          <Text style={styles.placeholderText}>
+        <View
+          style={[styles.placeholder, { backgroundColor: colors.primaryLight }]}
+        >
+          <Text style={[styles.placeholderText, { color: colors.primary }]}>
             🎨 Animated components coming soon...
           </Text>
         </View>
       </View>
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   content: {
     flex: 1,
     justifyContent: 'center',
@@ -53,11 +48,9 @@ const styles = StyleSheet.create({
   placeholder: {
     padding: 32,
     borderRadius: 12,
-    backgroundColor: '#007AFF20',
   },
   placeholderText: {
     fontSize: 18,
-    color: '#007AFF',
     textAlign: 'center',
   },
 });

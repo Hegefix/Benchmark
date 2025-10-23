@@ -6,6 +6,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { useTheme } from '@hooks';
 
 interface ButtonProps {
   title: string;
@@ -22,12 +23,16 @@ export const Button = ({
   style,
   textStyle,
 }: ButtonProps) => {
+  const { colors } = useTheme();
+
   const buttonStyle =
-    variant === 'primary' ? styles.primaryButton : styles.secondaryButton;
+    variant === 'primary'
+      ? [styles.primaryButton, { backgroundColor: colors.primary }]
+      : [styles.secondaryButton, { backgroundColor: colors.primaryLight }];
   const buttonTextStyle =
     variant === 'primary'
       ? styles.primaryButtonText
-      : styles.secondaryButtonText;
+      : [styles.secondaryButtonText, { color: colors.primary }];
 
   return (
     <TouchableOpacity
@@ -42,7 +47,6 @@ export const Button = ({
 
 const styles = StyleSheet.create({
   primaryButton: {
-    backgroundColor: '#007AFF',
     padding: 18,
     borderRadius: 12,
     alignItems: 'center',
@@ -54,13 +58,11 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     flex: 1,
-    backgroundColor: '#007AFF20',
     padding: 16,
     borderRadius: 12,
     alignItems: 'center',
   },
   secondaryButtonText: {
-    color: '#007AFF',
     fontSize: 16,
     fontWeight: '600',
   },

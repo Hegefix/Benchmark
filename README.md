@@ -1,97 +1,174 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Benchmark
 
-# Getting Started
+A React Native learning project focused on **React Native Reanimated** and **Turbo Modules**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🎯 Project Goals
 
-## Step 1: Start Metro
+- Learn and master React Native Reanimated 3.x animations
+- Explore Turbo Modules and the new React Native architecture
+- Follow best practices for React Native development
+- Build a clean, maintainable codebase
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📱 Tech Stack
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **React Native**: 0.82.1
+- **React**: 19.1.1
+- **React Navigation**: v7 (Static API)
+- **React Native Reanimated**: 3.19.3
+- **TypeScript**: 5.x
+- **Node.js**: 20.19.5 (managed via nvm)
 
-```sh
-# Using npm
-npm start
+## 🏗️ Project Structure
 
-# OR using Yarn
-yarn start
+```
+src/
+├── components/        # Reusable UI components
+│   ├── Button.tsx
+│   ├── ScreenContainer.tsx
+│   ├── SettingRow.tsx
+│   └── index.ts
+├── screens/          # Full screen components
+│   ├── WelcomeScreen.tsx
+│   ├── HomeScreen.tsx
+│   ├── ReanimatedScreen.tsx
+│   ├── TurboModulesScreen.tsx
+│   ├── SettingsScreen.tsx
+│   └── index.ts
+├── navigation/       # Navigation configuration
+│   └── RootNavigator.tsx
+├── hooks/           # Custom React hooks
+│   ├── useTheme.ts
+│   └── index.ts
+├── constants/       # App-wide constants
+│   ├── colors.json
+│   └── index.ts
+├── utils/           # Utility functions
+└── types/           # TypeScript type definitions
 ```
 
-## Step 2: Build and run your app
+## 🎨 Features
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- ✅ **Navigation**: React Navigation v7 with Native Stack Navigator
+- ✅ **Theme Support**: Light/Dark mode with centralized color management
+- ✅ **Import Aliases**: Clean imports using Babel module resolver (`@screens`, `@components`, etc.)
+- ✅ **Reusable Components**: Button, ScreenContainer, SettingRow
+- ✅ **Type Safety**: Full TypeScript support
+- 🚧 **Reanimated Examples**: Coming soon
+- 🚧 **Turbo Modules**: Coming soon
 
-### Android
+## 🚀 Getting Started
 
-```sh
-# Using npm
-npm run android
+### Prerequisites
 
-# OR using Yarn
-yarn android
-```
+- Node.js 20.19.5 (use nvm: `nvm use`)
+- Yarn package manager
+- Xcode (for iOS)
+- Android Studio (for Android)
 
-### iOS
+### Installation
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+1. **Clone the repository**
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+   ```bash
+   git clone https://github.com/Hegefix/Benchmark.git
+   cd Benchmark
+   ```
 
-```sh
-bundle install
-```
+2. **Install dependencies**
 
-Then, and every time you update your native dependencies, run:
+   ```bash
+   yarn install
+   ```
 
-```sh
-bundle exec pod install
-```
+3. **Install iOS dependencies**
+   ```bash
+   yarn pods
+   # or manually: cd ios && pod install
+   ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Running the App
 
-```sh
-# Using npm
-npm run ios
+#### iOS
 
-# OR using Yarn
+```bash
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+#### Android
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+yarn android
+```
 
-## Step 3: Modify your app
+#### Start Metro Bundler
 
-Now that you have successfully run the app, let's make changes!
+```bash
+yarn start
+# or with cache reset
+yarn start --reset-cache
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 📝 Code Style & Best Practices
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+This project follows strict coding guidelines (see `.cursorrules`):
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- ❌ **NO** `React.FC` or `React.FunctionComponent`
+- ❌ **NO** passing navigation as props (use `useNavigation()` hook)
+- ❌ **NO** code duplication (create reusable components)
+- ❌ **NO** unused styles in StyleSheet
+- ❌ **NO** `SafeAreaView` from `react-native` (deprecated)
+- ✅ Use Babel import aliases (`@screens`, `@components`, etc.)
+- ✅ One file = one component
+- ✅ TypeScript for type safety
+- ✅ React Navigation handles safe areas automatically
 
-## Congratulations! :tada:
+## 🎨 Theme System
 
-You've successfully run and modified your React Native App. :partying_face:
+Colors are centralized in `src/constants/colors.json`:
 
-### Now what?
+```json
+{
+  "light": { "background": "#ffffff", "text": "#000000", ... },
+  "dark": { "background": "#1a1a1a", "text": "#ffffff", ... }
+}
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Use the `useTheme` hook to access colors:
 
-# Troubleshooting
+```tsx
+import { useTheme } from '@hooks';
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+const MyComponent = () => {
+  const { colors, isDarkMode } = useTheme();
+  return <View style={{ backgroundColor: colors.background }} />;
+};
+```
 
-# Learn More
+## 🔧 Available Scripts
 
-To learn more about React Native, take a look at the following resources:
+- `yarn start` - Start Metro bundler
+- `yarn ios` - Run on iOS simulator
+- `yarn android` - Run on Android emulator
+- `yarn lint` - Run ESLint
+- `yarn test` - Run tests
+- `yarn pods` - Install iOS CocoaPods dependencies
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 📚 Learning Resources
+
+- [React Native Reanimated Docs](https://docs.swmansion.com/react-native-reanimated/)
+- [React Navigation v7 Docs](https://reactnavigation.org/docs/getting-started)
+- [Turbo Modules Guide](https://reactnative.dev/docs/the-new-architecture/pillars-turbomodules)
+
+## 🤝 Contributing
+
+This is a personal learning project, but suggestions and feedback are welcome!
+
+## 📄 License
+
+This project is for educational purposes.
+
+## 🙏 Acknowledgments
+
+- React Native community
+- React Navigation team
+- Software Mansion (Reanimated)
