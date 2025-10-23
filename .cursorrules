@@ -1,0 +1,186 @@
+# Benchmark Project Rules
+
+## Core Principles
+
+- This is a learning project focused on React Native Reanimated and Turbo Modules
+- Keep code simple and maintainable
+- Follow React Native and TypeScript best practices
+
+## Code Style Rules
+
+### React Components
+
+- ❌ NEVER use `React.FC` or `React.FunctionComponent`
+- ✅ Use regular function declarations
+- ✅ Use TypeScript for type safety
+
+```tsx
+// ❌ Bad
+export const MyComponent: React.FC<Props> = ({ prop }) => {};
+
+// ✅ Good
+export const MyComponent = ({ prop }: Props) => {};
+```
+
+### Navigation
+
+- ❌ NEVER pass navigation as a prop
+- ✅ ALWAYS use `useNavigation()` hook
+- ✅ Properly type navigation with `NavigationProp<RootStackParamList>`
+
+```tsx
+// ❌ Bad
+interface Props {
+  navigation: any;
+}
+export const Screen: React.FC<Props> = ({ navigation }) => {};
+
+// ✅ Good
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+
+export const Screen = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+};
+```
+
+### Component Reusability
+
+- ❌ NEVER duplicate code (especially TouchableOpacity buttons)
+- ✅ Create reusable components in `src/components/`
+- ✅ Use the existing `Button` component for all buttons
+- ✅ One file = one component (extract nested components to separate files)
+
+### Import Aliases
+
+- ✅ Use Babel module resolver aliases:
+  - `@screens` → `./src/screens`
+  - `@components` → `./src/components`
+  - `@navigation` → `./src/navigation`
+  - `@hooks` → `./src/hooks`
+  - `@utils` → `./src/utils`
+  - `@types` → `./src/types`
+  - `@constants` → `./src/constants`
+
+```tsx
+// ❌ Bad
+import { Button } from '../../../components/Button';
+
+// ✅ Good
+import { Button } from '@components';
+```
+
+### Safe Areas
+
+- ❌ NEVER use `SafeAreaView` from `react-native` (deprecated, iOS only)
+- ❌ NEVER use `SafeAreaView` from `react-native-safe-area-context` in screens
+- ✅ React Navigation handles safe areas automatically
+- ✅ Use regular `View` components with `flex: 1`
+
+## Git Workflow
+
+### Commits and Pushes
+
+- ❌ NEVER commit or push without explicit user permission
+- ✅ Make changes to files when requested
+- ✅ Wait for user to test changes
+- ✅ Only commit/push when user explicitly asks
+
+### Commit Messages
+
+- Use clear, descriptive commit messages
+- Include what was changed and why
+- Use present tense ("Add feature" not "Added feature")
+
+## File Organization
+
+### Folder Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── screens/        # Full screen components
+├── navigation/     # Navigation configuration
+├── hooks/          # Custom React hooks
+├── utils/          # Helper functions
+├── types/          # TypeScript type definitions
+└── constants/      # App-wide constants
+```
+
+### Naming Conventions
+
+- Components: PascalCase (e.g., `Button.tsx`, `HomeScreen.tsx`)
+- Hooks: camelCase with 'use' prefix (e.g., `useAuth.ts`)
+- Utils: camelCase (e.g., `formatDate.ts`)
+- Constants: UPPER_SNAKE_CASE (e.g., `API_URL`)
+
+## React Navigation v7
+
+### Navigator Configuration
+
+- Use Static API (recommended for v7)
+- Set default options in `screenOptions`
+- Use `headerBackButtonDisplayMode: 'minimal'` to hide back button text
+
+```tsx
+const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Welcome',
+  screenOptions: {
+    headerBackButtonDisplayMode: 'minimal',
+  },
+  screens: {
+    // ...
+  },
+});
+```
+
+## TypeScript
+
+### Type Definitions
+
+- Define types inline or in separate files
+- Use `type` for unions and simple types
+- Use `interface` for object shapes that might be extended
+- Always type navigation params
+
+```tsx
+type RootStackParamList = {
+  Welcome: undefined;
+  Home: undefined;
+  Profile: { userId: string };
+};
+```
+
+## Package Management
+
+- Use Yarn (not npm)
+- Use `yarn pods` to install iOS dependencies
+- Run `yarn start --reset-cache` after Babel config changes
+
+## Node Version
+
+- Use Node 20.19.5 (specified in `.nvmrc`)
+- Run `nvm use` to switch to correct version
+
+## Dependencies
+
+- React Native 0.82.1
+- React Navigation v7 (Static API)
+- React Native Reanimated 3.x (compatible with RN 0.82.1)
+- TypeScript 5.x
+
+## Before Every Task
+
+1. Read these rules
+2. Check current file structure
+3. Use existing patterns and components
+4. Ask for clarification if needed
+5. Make changes WITHOUT committing
+6. Wait for user approval before commit/push
+
+## Remember
+
+- This is a LEARNING project - keep it simple
+- Focus on Reanimated and Turbo Modules
+- Don't over-engineer solutions
+- User tests first, then commits

@@ -10,6 +10,10 @@ import {
 
 // Define the navigation configuration using Static API (React Navigation v7)
 const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Welcome',
+  screenOptions: {
+    headerBackButtonDisplayMode: 'minimal',
+  },
   screens: {
     Welcome: {
       screen: WelcomeScreen,
@@ -22,28 +26,24 @@ const RootStack = createNativeStackNavigator({
       screen: HomeScreen,
       options: {
         title: 'Benchmark',
-        headerLargeTitle: true,
       },
     },
     Reanimated: {
       screen: ReanimatedScreen,
       options: {
         title: 'Reanimated',
-        headerBackTitle: 'Back',
       },
     },
     TurboModules: {
       screen: TurboModulesScreen,
       options: {
         title: 'Turbo Modules',
-        headerBackTitle: 'Back',
       },
     },
     Settings: {
       screen: SettingsScreen,
       options: {
         title: 'Settings',
-        headerBackTitle: 'Back',
       },
     },
   },

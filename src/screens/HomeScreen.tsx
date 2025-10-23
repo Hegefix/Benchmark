@@ -1,17 +1,19 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  useColorScheme,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, useColorScheme } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+import { Button } from '@components';
 
-interface HomeScreenProps {
-  navigation: any;
-}
+type RootStackParamList = {
+  Welcome: undefined;
+  Home: undefined;
+  Reanimated: undefined;
+  TurboModules: undefined;
+  Settings: undefined;
+};
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+export const HomeScreen = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -31,26 +33,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
+          <Button
+            title="Reanimated Examples"
             onPress={() => navigation.navigate('Reanimated')}
-          >
-            <Text style={styles.buttonText}>Reanimated Examples</Text>
-          </TouchableOpacity>
+            variant="primary"
+          />
 
-          <TouchableOpacity
-            style={styles.button}
+          <Button
+            title="Turbo Modules"
             onPress={() => navigation.navigate('TurboModules')}
-          >
-            <Text style={styles.buttonText}>Turbo Modules</Text>
-          </TouchableOpacity>
+            variant="primary"
+          />
 
-          <TouchableOpacity
-            style={styles.button}
+          <Button
+            title="Settings"
             onPress={() => navigation.navigate('Settings')}
-          >
-            <Text style={styles.buttonText}>Settings</Text>
-          </TouchableOpacity>
+            variant="primary"
+          />
         </View>
       </View>
     </View>
@@ -82,16 +81,5 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 300,
     gap: 16,
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '600',
   },
 });

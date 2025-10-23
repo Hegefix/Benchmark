@@ -6,8 +6,20 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+import { Button } from '@components';
+
+type RootStackParamList = {
+  Welcome: undefined;
+  Home: undefined;
+  Reanimated: undefined;
+  TurboModules: undefined;
+  Settings: undefined;
+};
 
 export const WelcomeScreen = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -26,47 +38,29 @@ export const WelcomeScreen = () => {
         <Text style={[styles.subtitle, textStyle]}>
           Learning Reanimated & Turbo Modules
         </Text>
-        <View style={styles.infoContainer}>
-          <InfoCard
-            title="React Native"
-            version="0.82.1"
-            isDarkMode={isDarkMode}
+
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Get Started"
+            onPress={() => navigation.navigate('Home')}
+            variant="primary"
           />
-          <InfoCard title="Node.js" version="20.19.5" isDarkMode={isDarkMode} />
-          <InfoCard
-            title="Status"
-            version="Ready to Learn 🚀"
-            isDarkMode={isDarkMode}
-          />
+
+          <View style={styles.secondaryButtonsRow}>
+            <Button
+              title="🎨 Reanimated"
+              onPress={() => navigation.navigate('Reanimated')}
+              variant="secondary"
+            />
+
+            <Button
+              title="⚡ Turbo Modules"
+              onPress={() => navigation.navigate('TurboModules')}
+              variant="secondary"
+            />
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
-
-interface InfoCardProps {
-  title: string;
-  version: string;
-  isDarkMode: boolean;
-}
-
-const InfoCard: React.FC<InfoCardProps> = ({ title, version, isDarkMode }) => {
-  const cardStyle = {
-    backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
-  };
-
-  const textStyle = {
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
-
-  const versionStyle = {
-    color: isDarkMode ? '#a0a0a0' : '#666666',
-  };
-
-  return (
-    <View style={[styles.card, cardStyle]}>
-      <Text style={[styles.cardTitle, textStyle]}>{title}</Text>
-      <Text style={[styles.cardVersion, versionStyle]}>{version}</Text>
     </View>
   );
 };
@@ -97,6 +91,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 400,
     gap: 16,
+    marginBottom: 32,
   },
   card: {
     padding: 20,
@@ -112,5 +107,14 @@ const styles = StyleSheet.create({
   cardVersion: {
     fontSize: 14,
     fontWeight: '500',
+  },
+  buttonContainer: {
+    width: '100%',
+    maxWidth: 400,
+    gap: 12,
+  },
+  secondaryButtonsRow: {
+    flexDirection: 'row',
+    gap: 12,
   },
 });
