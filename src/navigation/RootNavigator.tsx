@@ -7,9 +7,10 @@ import {
   TurboModulesScreen,
   SettingsScreen,
 } from '@screens';
+import type { RootStackParamList } from '@types';
 
 // Define the navigation configuration using Static API (React Navigation v7)
-const RootStack = createNativeStackNavigator({
+const RootStack = createNativeStackNavigator<RootStackParamList>({
   initialRouteName: 'Welcome',
   screenOptions: {
     headerBackButtonDisplayMode: 'minimal',

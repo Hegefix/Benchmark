@@ -1,6 +1,5 @@
 module.exports = {
   preset: 'react-native',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|@react-navigation|react-native-screens|react-native-safe-area-context)/)',
@@ -10,6 +9,7 @@ module.exports = {
     '!src/**/*.d.ts',
     '!src/**/index.ts',
     '!src/types/**',
+    '!src/test-utils/**',
   ],
   coverageThreshold: {
     global: {
@@ -27,6 +27,7 @@ module.exports = {
     '^@utils(.*)$': '<rootDir>/src/utils$1',
     '^@types(.*)$': '<rootDir>/src/types$1',
     '^@constants(.*)$': '<rootDir>/src/constants$1',
+    '^@test-utils(.*)$': '<rootDir>/src/test-utils$1',
   },
   testMatch: [
     '**/__tests__/**/*.test.[jt]s?(x)',

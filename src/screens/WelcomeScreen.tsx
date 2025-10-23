@@ -4,14 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import { Button, ScreenContainer } from '@components';
 import { useTheme } from '@hooks';
-
-type RootStackParamList = {
-  Welcome: undefined;
-  Home: undefined;
-  Reanimated: undefined;
-  TurboModules: undefined;
-  Settings: undefined;
-};
+import type { RootStackParamList } from '@types';
 
 export const WelcomeScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

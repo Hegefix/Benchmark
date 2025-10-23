@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '@test-utils';
 import { TurboModulesScreen } from '../TurboModulesScreen';
 
 jest.mock('@hooks', () => ({
@@ -28,7 +28,9 @@ describe('TurboModulesScreen', () => {
 
   it('should render description', () => {
     const { getByText } = render(<TurboModulesScreen />);
-    expect(getByText("Learn about React Native's new architecture")).toBeTruthy();
+    expect(
+      getByText("Learn about React Native's new architecture"),
+    ).toBeTruthy();
   });
 
   it('should render placeholder text', () => {
@@ -36,4 +38,3 @@ describe('TurboModulesScreen', () => {
     expect(getByText('⚡ Turbo Module examples coming soon...')).toBeTruthy();
   });
 });
-

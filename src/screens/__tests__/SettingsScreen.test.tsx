@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '@test-utils';
 import { SettingsScreen } from '../SettingsScreen';
 
 jest.mock('@hooks', () => ({
@@ -72,4 +72,3 @@ describe('SettingsScreen', () => {
     expect(getByText('Turbo Modules')).toBeTruthy();
   });
 });
-

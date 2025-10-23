@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-native';
+import { renderHook } from '@test-utils';
 import { useColorScheme } from 'react-native';
 import { useTheme } from '../useTheme';
 import { colors } from '@constants';
@@ -52,4 +52,3 @@ describe('useTheme', () => {
     expect(result.current.colors).toHaveProperty('successLight');
   });
 });
-

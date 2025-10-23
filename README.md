@@ -213,6 +213,7 @@ src/
 - [React Native Reanimated Docs](https://docs.swmansion.com/react-native-reanimated/)
 - [React Navigation v7 Docs](https://reactnavigation.org/docs/getting-started)
 - [Turbo Modules Guide](https://reactnative.dev/docs/the-new-architecture/pillars-turbomodules)
+- [Testing Guide](./TESTING.md) - Comprehensive testing documentation
 
 ## 🤝 Contributing
 

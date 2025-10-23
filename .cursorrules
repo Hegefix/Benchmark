@@ -198,6 +198,44 @@ type RootStackParamList = {
 5. Make changes WITHOUT committing
 6. Wait for user approval before commit/push
 
+## Testing
+
+### Test Structure
+
+- ✅ All tests in `__tests__/` folders next to source files
+- ✅ Use `@test-utils` for render and utilities
+- ✅ Global mocks in `__mocks__/` at project root
+- ✅ Test-specific mocks override globals when needed
+
+### Test Best Practices
+
+- ❌ NEVER import from `@testing-library/react-native` directly
+- ✅ ALWAYS import from `@test-utils`
+- ✅ Mock child components in unit tests for isolation
+- ✅ Use global mocks from `__mocks__/` when possible
+- ✅ Override mocks only when you need to spy on calls
+- ✅ Test behavior, not implementation
+
+### Running Tests
+
+```bash
+yarn test              # Run all tests
+yarn test:watch        # Watch mode
+yarn test:coverage     # With coverage
+yarn validate          # Lint + types + tests
+```
+
+### Coverage Requirements
+
+- 80% minimum for all metrics (statements, branches, functions, lines)
+- Current: 100% statements, 88.88% branches, 100% functions, 100% lines
+
+## Pre-commit Hooks
+
+- ✅ Husky runs linter, type-check, and tests before commit
+- ❌ Commit blocked if any check fails
+- ✅ Ensures code quality
+
 ## Remember
 
 - This is a LEARNING project - keep it simple

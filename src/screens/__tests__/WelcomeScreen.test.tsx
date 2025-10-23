@@ -1,24 +1,18 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render, fireEvent } from '@test-utils';
 import { WelcomeScreen } from '../WelcomeScreen';
 
 const mockNavigate = jest.fn();
 
+// Navigation is mocked in __mocks__ but we override navigate for testing
 jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
   useNavigation: () => ({
     navigate: mockNavigate,
   }),
 }));
 
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      text: '#000000',
-      background: '#ffffff',
-    },
-  }),
-}));
-
+// Mock components to avoid rendering complexity
 jest.mock('@components', () => ({
   Button: ({ title, onPress }: any) => {
     const { Text, TouchableOpacity } = require('react-native');
@@ -62,4 +56,3 @@ describe('WelcomeScreen', () => {
     expect(mockNavigate).toHaveBeenCalledWith('Home');
   });
 });
-

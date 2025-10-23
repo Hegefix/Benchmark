@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '../src/test-utils';
 import App from '../App';
 
 // Mock Navigation component

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '@test-utils';
 import { Navigation } from '../RootNavigator';
 
 // Mock all screens
@@ -48,7 +48,7 @@ jest.mock('@screens', () => ({
 
 // Mock createStaticNavigation
 jest.mock('@react-navigation/native', () => ({
-  createStaticNavigation: jest.fn((config) => {
+  createStaticNavigation: jest.fn(_config => {
     return () => {
       const { Text, View } = require('react-native');
       return (
@@ -61,7 +61,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 jest.mock('@react-navigation/native-stack', () => ({
-  createNativeStackNavigator: jest.fn((config) => config),
+  createNativeStackNavigator: jest.fn(_config => _config),
 }));
 
 describe('RootNavigator', () => {
@@ -74,4 +74,3 @@ describe('RootNavigator', () => {
     expect(Navigation).toBeDefined();
   });
 });
-

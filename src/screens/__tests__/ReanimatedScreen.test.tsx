@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '@test-utils';
 import { ReanimatedScreen } from '../ReanimatedScreen';
 
 jest.mock('@hooks', () => ({
@@ -28,7 +28,9 @@ describe('ReanimatedScreen', () => {
 
   it('should render description', () => {
     const { getByText } = render(<ReanimatedScreen />);
-    expect(getByText('Learn React Native Reanimated animations here')).toBeTruthy();
+    expect(
+      getByText('Learn React Native Reanimated animations here'),
+    ).toBeTruthy();
   });
 
   it('should render placeholder text', () => {
@@ -36,4 +38,3 @@ describe('ReanimatedScreen', () => {
     expect(getByText('🎨 Animated components coming soon...')).toBeTruthy();
   });
 });
-

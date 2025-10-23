@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render } from '@test-utils';
 import { Text } from 'react-native';
 import { ScreenContainer } from '../ScreenContainer';
 
@@ -18,7 +18,7 @@ describe('ScreenContainer', () => {
     const { getByText } = render(
       <ScreenContainer>
         <Text>Test Content</Text>
-      </ScreenContainer>
+      </ScreenContainer>,
     );
 
     expect(getByText('Test Content')).toBeTruthy();
@@ -29,7 +29,7 @@ describe('ScreenContainer', () => {
       <ScreenContainer>
         <Text>First Child</Text>
         <Text>Second Child</Text>
-      </ScreenContainer>
+      </ScreenContainer>,
     );
 
     expect(getByText('First Child')).toBeTruthy();
@@ -41,7 +41,7 @@ describe('ScreenContainer', () => {
     const { getByText } = render(
       <ScreenContainer style={customStyle}>
         <Text>Styled Content</Text>
-      </ScreenContainer>
+      </ScreenContainer>,
     );
 
     expect(getByText('Styled Content')).toBeTruthy();
@@ -61,10 +61,9 @@ describe('ScreenContainer', () => {
     const { getByText } = render(
       <ScreenContainer>
         <Text>Dark Mode Content</Text>
-      </ScreenContainer>
+      </ScreenContainer>,
     );
 
     expect(getByText('Dark Mode Content')).toBeTruthy();
   });
 });
-

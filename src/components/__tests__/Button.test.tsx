@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render, fireEvent } from '@test-utils';
 import { Button } from '../Button';
 
 // Mock useTheme hook
@@ -15,7 +15,7 @@ jest.mock('@hooks', () => ({
 describe('Button', () => {
   it('should render correctly with title', () => {
     const { getByText } = render(
-      <Button title="Test Button" onPress={jest.fn()} />
+      <Button title="Test Button" onPress={jest.fn()} />,
     );
 
     expect(getByText('Test Button')).toBeTruthy();
@@ -24,7 +24,7 @@ describe('Button', () => {
   it('should call onPress when pressed', () => {
     const onPressMock = jest.fn();
     const { getByText } = render(
-      <Button title="Test Button" onPress={onPressMock} />
+      <Button title="Test Button" onPress={onPressMock} />,
     );
 
     fireEvent.press(getByText('Test Button'));
@@ -33,7 +33,7 @@ describe('Button', () => {
 
   it('should render primary variant by default', () => {
     const { getByText } = render(
-      <Button title="Primary Button" onPress={jest.fn()} />
+      <Button title="Primary Button" onPress={jest.fn()} />,
     );
 
     const button = getByText('Primary Button');
@@ -42,7 +42,11 @@ describe('Button', () => {
 
   it('should render secondary variant when specified', () => {
     const { getByText } = render(
-      <Button title="Secondary Button" onPress={jest.fn()} variant="secondary" />
+      <Button
+        title="Secondary Button"
+        onPress={jest.fn()}
+        variant="secondary"
+      />,
     );
 
     const button = getByText('Secondary Button');
@@ -52,7 +56,7 @@ describe('Button', () => {
   it('should apply custom style when provided', () => {
     const customStyle = { marginTop: 20 };
     const { getByText } = render(
-      <Button title="Styled Button" onPress={jest.fn()} style={customStyle} />
+      <Button title="Styled Button" onPress={jest.fn()} style={customStyle} />,
     );
 
     expect(getByText('Styled Button')).toBeTruthy();
@@ -65,7 +69,7 @@ describe('Button', () => {
         title="Custom Text"
         onPress={jest.fn()}
         textStyle={customTextStyle}
-      />
+      />,
     );
 
     expect(getByText('Custom Text')).toBeTruthy();
@@ -74,7 +78,7 @@ describe('Button', () => {
   it('should handle multiple presses', () => {
     const onPressMock = jest.fn();
     const { getByText } = render(
-      <Button title="Multi Press" onPress={onPressMock} />
+      <Button title="Multi Press" onPress={onPressMock} />,
     );
 
     const button = getByText('Multi Press');
@@ -85,4 +89,3 @@ describe('Button', () => {
     expect(onPressMock).toHaveBeenCalledTimes(3);
   });
 });
-

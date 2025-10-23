@@ -24,6 +24,7 @@ module.exports = {
           '@utils': './src/utils',
           '@types': './src/types',
           '@constants': './src/constants',
+          '@test-utils': './src/test-utils',
         },
       },
     ],
