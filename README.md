@@ -151,7 +151,62 @@ const MyComponent = () => {
 - `yarn android` - Run on Android emulator
 - `yarn lint` - Run ESLint
 - `yarn test` - Run tests
+- `yarn test:watch` - Run tests in watch mode
+- `yarn test:coverage` - Run tests with coverage report
 - `yarn pods` - Install iOS CocoaPods dependencies
+
+## 🧪 Testing
+
+This project has comprehensive test coverage using Jest and React Native Testing Library.
+
+### Test Coverage
+
+- **Overall Coverage**: 100% statements, 88.88% branches, 100% functions, 100% lines
+- **Threshold**: 80% minimum for all metrics
+
+### Running Tests
+
+```bash
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+
+# Run tests with coverage report
+yarn test:coverage
+```
+
+### Test Structure
+
+```
+__tests__/
+  └── App.test.tsx
+src/
+  ├── components/__tests__/
+  │   ├── Button.test.tsx
+  │   ├── ScreenContainer.test.tsx
+  │   └── SettingRow.test.tsx
+  ├── screens/__tests__/
+  │   ├── WelcomeScreen.test.tsx
+  │   ├── HomeScreen.test.tsx
+  │   ├── ReanimatedScreen.test.tsx
+  │   ├── TurboModulesScreen.test.tsx
+  │   └── SettingsScreen.test.tsx
+  ├── hooks/__tests__/
+  │   └── useTheme.test.ts
+  └── navigation/__tests__/
+      └── RootNavigator.test.tsx
+```
+
+### What's Tested
+
+- ✅ All components render correctly
+- ✅ Button interactions and variants
+- ✅ Navigation flows
+- ✅ Theme switching (light/dark mode)
+- ✅ Screen content and layout
+- ✅ Custom hooks behavior
 
 ## 📚 Learning Resources
 
