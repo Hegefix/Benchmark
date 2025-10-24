@@ -15,9 +15,10 @@ import {
 import type { RootStackParamList, DrawerParamList } from '@types';
 
 // Define the Drawer Navigator (Main screens with drawer access to Settings)
-const withDrawerIcon = (name: string) => ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name={name} size={size} color={color} />
-);
+const withDrawerIcon =
+  (name: string) =>
+  ({ color, size }: { color: string; size: number }) =>
+    <MaterialCommunityIcons name={name} size={size} color={color} />;
 
 const MainDrawer = createDrawerNavigator<DrawerParamList>({
   initialRouteName: ROUTES.HOME,
