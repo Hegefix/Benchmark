@@ -1,19 +1,7 @@
 import React from 'react';
-import { render } from '@test-utils';
+import { render, renderHook } from '@test-utils';
 import { DrawerContent } from '../DrawerContent';
-
-// Mock useTheme hook
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      background: '#ffffff',
-      text: '#000000',
-      textSecondary: '#666666',
-      card: '#f5f5f5',
-      primary: '#007AFF',
-    },
-  }),
-}));
+import { useTheme } from '@hooks';
 
 // Mock Icon component
 jest.mock('../Icon', () => ({
@@ -74,13 +62,21 @@ describe('DrawerContent', () => {
 
   it('should apply theme colors to user name', () => {
     const { getByText } = render(<DrawerContent {...mockProps} />);
+    const { result } = renderHook(() => useTheme());
+
     const userName = getByText('John Doe');
-    expect(userName.props.style).toContainEqual({ color: '#000000' });
+    expect(userName.props.style).toContainEqual({
+      color: result.current.colors.text,
+    });
   });
 
   it('should apply theme colors to user email', () => {
     const { getByText } = render(<DrawerContent {...mockProps} />);
+    const { result } = renderHook(() => useTheme());
+
     const userEmail = getByText('[email protected]');
-    expect(userEmail.props.style).toContainEqual({ color: '#666666' });
+    expect(userEmail.props.style).toContainEqual({
+      color: result.current.colors.textSecondary,
+    });
   });
 });

@@ -2,16 +2,7 @@ import React from 'react';
 import { render } from '@test-utils';
 import { Text } from 'react-native';
 import { ScreenContainer } from '../ScreenContainer';
-
-// Mock useTheme hook
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    isDarkMode: false,
-    colors: {
-      background: '#ffffff',
-    },
-  }),
-}));
+import { useTheme } from '@hooks';
 
 describe('ScreenContainer', () => {
   it('should render children correctly', () => {
@@ -47,21 +38,23 @@ describe('ScreenContainer', () => {
     expect(getByText('Styled Content')).toBeTruthy();
   });
 
-  it('should render with dark mode', () => {
-    jest.resetModules();
-    jest.doMock('@hooks', () => ({
-      useTheme: () => ({
-        isDarkMode: true,
-        colors: {
-          background: '#1a1a1a',
-        },
-      }),
-    }));
+  it('should render with dark mode preference', () => {
+    const DarkModeWrapper = ({ children }: { children: React.ReactNode }) => {
+      const { setPreference } = useTheme();
+
+      React.useEffect(() => {
+        setPreference('dark');
+      }, [setPreference]);
+
+      return <>{children}</>;
+    };
 
     const { getByText } = render(
-      <ScreenContainer>
-        <Text>Dark Mode Content</Text>
-      </ScreenContainer>,
+      <DarkModeWrapper>
+        <ScreenContainer>
+          <Text>Dark Mode Content</Text>
+        </ScreenContainer>
+      </DarkModeWrapper>,
     );
 
     expect(getByText('Dark Mode Content')).toBeTruthy();

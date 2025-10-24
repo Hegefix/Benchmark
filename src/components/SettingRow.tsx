@@ -4,18 +4,23 @@ import { useTheme } from '@hooks';
 
 interface SettingRowProps {
   label: string;
-  value: string;
+  value?: string;
+  accessory?: React.ReactNode;
 }
 
-export const SettingRow = ({ label, value }: SettingRowProps) => {
+export const SettingRow = ({ label, value, accessory }: SettingRowProps) => {
   const { colors } = useTheme();
 
   return (
     <View style={styles.row}>
       <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
-      <Text style={[styles.value, { color: colors.textSecondary }]}>
-        {value}
-      </Text>
+      {accessory ? (
+        <View style={styles.accessory}>{accessory}</View>
+      ) : (
+        <Text style={[styles.value, { color: colors.textSecondary }]}>
+          {value}
+        </Text>
+      )}
     </View>
   );
 };
@@ -33,5 +38,8 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
     fontWeight: '500',
+  },
+  accessory: {
+    marginLeft: 16,
   },
 });

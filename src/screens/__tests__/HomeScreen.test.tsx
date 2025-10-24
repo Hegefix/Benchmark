@@ -12,26 +12,6 @@ jest.mock('@react-navigation/native', () => ({
   }),
 }));
 
-// Mock components to avoid rendering complexity
-jest.mock('@components', () => ({
-  Button: ({ title, onPress }: any) => {
-    const { Text, TouchableOpacity } = require('react-native');
-    return (
-      <TouchableOpacity onPress={onPress} testID={`button-${title}`}>
-        <Text>{title}</Text>
-      </TouchableOpacity>
-    );
-  },
-  ScreenContainer: ({ children }: any) => {
-    const { View } = require('react-native');
-    return <View>{children}</View>;
-  },
-  Icon: ({ name }: any) => {
-    const { Text } = require('react-native');
-    return <Text testID={`icon-${name}`}>{name}</Text>;
-  },
-}));
-
 describe('HomeScreen', () => {
   beforeEach(() => {
     jest.clearAllMocks();
