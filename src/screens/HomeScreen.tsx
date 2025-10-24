@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
+
 import { Button, ScreenContainer, Icon } from '@components';
+import { ROUTES } from '@constants';
 import { useTheme } from '@hooks';
 import type { DrawerParamList } from '@types';
 
@@ -24,7 +26,7 @@ export const HomeScreen = () => {
           <View style={styles.buttonRow}>
             <Button
               title="Reanimated Examples"
-              onPress={() => navigation.navigate('Reanimated')}
+              onPress={() => navigation.navigate(ROUTES.REANIMATED)}
               variant="primary"
               style={styles.buttonWithIcon}
             />
@@ -33,7 +35,7 @@ export const HomeScreen = () => {
           <View style={styles.buttonRow}>
             <Button
               title="Turbo Modules"
-              onPress={() => navigation.navigate('TurboModules')}
+              onPress={() => navigation.navigate(ROUTES.TURBO_MODULES)}
               variant="primary"
               style={styles.buttonWithIcon}
             />
