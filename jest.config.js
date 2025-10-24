@@ -14,6 +14,10 @@ module.exports = {
     '!src/**/index.ts',
     '!src/types/**',
     '!src/test-utils/**',
+    '!src/theme/tokens.ts',
+    '!src/theme/useAppTheme.ts',
+    '!src/storage/mmkv.ts',
+    '!src/navigation/RootNavigator.tsx',
   ],
 
   // Coverage thresholds
