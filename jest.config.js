@@ -46,6 +46,8 @@ module.exports = {
     '^@constants$': '<rootDir>/src/constants',
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@theme$': '<rootDir>/src/theme',
+    '^@storage/(.*)$': '<rootDir>/src/storage/$1',
+    '^@storage$': '<rootDir>/src/storage',
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '^@assets$': '<rootDir>/src/assets',
     '^@test-utils/(.*)$': '<rootDir>/src/test-utils/$1',

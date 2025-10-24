@@ -92,6 +92,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@storage/**",
+            "group": "internal"
+          },
+          {
             "pattern": "@assets/**",
             "group": "internal"
           }
