@@ -18,6 +18,12 @@ try {
   branchName = execSync('git rev-parse --abbrev-ref HEAD', {
     encoding: 'utf-8',
   }).trim();
+
+  // In GitHub Actions PR context, HEAD is detached
+  // Try to get branch name from GitHub environment variables
+  if (branchName === 'HEAD' && process.env.GITHUB_HEAD_REF) {
+    branchName = process.env.GITHUB_HEAD_REF;
+  }
 } catch (error) {
   console.error('❌ Failed to get branch name');
   process.exit(1);
