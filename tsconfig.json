@@ -23,8 +23,20 @@
       "@assets": ["src/assets"],
       "@test-utils": ["src/test-utils"],
       "@test-utils/*": ["src/test-utils/*"]
-    }
+    },
+    // ============================================================================
+    // STRICT TYPE CHECKING
+    // ============================================================================
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["**/node_modules", "**/Pods"]
+  "exclude": ["**/node_modules", "**/Pods", "**/__mocks__"]
 }
