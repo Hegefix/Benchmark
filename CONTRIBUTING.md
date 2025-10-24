@@ -30,6 +30,13 @@ All branch names must follow this format:
 - No spaces or special characters
 - Keep it concise and descriptive
 
+### Exceptions
+
+The following branch name patterns are automatically allowed:
+
+- `main`, `master`, `develop` - Protected branches
+- `codex/*` - Automated tool branches (e.g., Codex AI)
+
 ### Examples
 
 ✅ **Good:**

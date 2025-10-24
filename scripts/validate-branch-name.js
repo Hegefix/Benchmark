@@ -35,6 +35,12 @@ if (protectedBranches.includes(branchName)) {
   process.exit(0);
 }
 
+// Skip validation for automated tool branches (e.g., codex/*)
+if (branchName.startsWith('codex/')) {
+  console.log(`✅ Branch name is valid: ${branchName} (automated tool)`);
+  process.exit(0);
+}
+
 // Branch name pattern
 const BRANCH_PATTERN =
   /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|hotfix|release)\/[a-z0-9-]+$/;
