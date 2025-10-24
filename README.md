@@ -42,10 +42,12 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** The New Architecture provides significant performance improvements and enables modern React Native features.
 
 **Implementation:**
+
 - Android: `newArchEnabled=true` in `android/gradle.properties`
 - iOS: `ENV['RCT_NEW_ARCH_ENABLED'] = '1'` in `ios/Podfile`
 
 **Benefits:**
+
 - Improved rendering performance with Fabric
 - Synchronous native module calls with TurboModules
 - Better support for concurrent React features
@@ -56,9 +58,11 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Hermes is optimized for React Native and provides better performance on Android.
 
 **Implementation:**
+
 - `hermesEnabled=true` in `android/gradle.properties`
 
 **Benefits:**
+
 - Faster app startup time
 - Reduced memory usage
 - Smaller APK size
@@ -69,6 +73,7 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Babel plugins must be ordered correctly for proper transformation.
 
 **Implementation:**
+
 - Module resolver plugins come first
 - `react-native-worklets/plugin` must be last
 - Documented with comments in `babel.config.js`
@@ -80,6 +85,7 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Catch more bugs at compile time and improve code quality.
 
 **Implementation:**
+
 ```json
 {
   "strict": true,
@@ -94,6 +100,7 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 ```
 
 **Benefits:**
+
 - Safer array/object access
 - Stricter optional property handling
 - Catch more potential runtime errors
@@ -103,12 +110,14 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Consistent code style and organized imports improve maintainability.
 
 **Implementation:**
+
 - `eslint-plugin-import` for import ordering
 - Alphabetical sorting within groups
 - Newlines between import groups
 - Path groups for all aliases
 
 **Benefits:**
+
 - Easier to find imports
 - Consistent code style across team
 - Automatic import organization
@@ -118,12 +127,14 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Consistent import paths between source and test files.
 
 **Implementation:**
+
 - Module name mapper for all aliases
 - Transform patterns for React Native packages
 - Setup file with mocks
 - Coverage thresholds (80%)
 
 **Benefits:**
+
 - Same import paths in tests as in source
 - Proper transformation of node_modules
 - Consistent test environment
@@ -133,11 +144,13 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Centralized design system ensures consistency and makes theming easier.
 
 **Implementation:**
+
 - `src/theme/tokens.ts` with colors, spacing, typography, etc.
 - `useAppTheme()` hook for accessing theme
 - Automatic dark mode support
 
 **Benefits:**
+
 - Consistent design across app
 - Easy theme switching
 - Type-safe theme access
@@ -148,11 +161,13 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** AsyncStorage is slow and asynchronous. MMKV is 30x faster with a synchronous API.
 
 **Implementation:**
+
 - `src/storage/mmkv.ts` with type-safe wrapper
 - `kv` utility for common operations
 - `StorageKeys` enum for type safety
 
 **Benefits:**
+
 - 30x faster than AsyncStorage
 - Synchronous API (no async/await)
 - Encryption support
@@ -163,12 +178,14 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 **Why:** Automated testing and building ensures code quality.
 
 **Implementation:**
+
 - Lint and typecheck job
 - Test job with coverage
 - Android and iOS build jobs
 - Runs on PR and push to main/develop
 
 **Benefits:**
+
 - Catch issues before merge
 - Automated testing
 - Build verification
@@ -187,31 +204,37 @@ A modern React Native application built to learn and demonstrate Reanimated 4, T
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/Hegefix/Benchmark.git
 cd Benchmark
 ```
 
 2. Install dependencies:
+
 ```bash
 yarn setup
 ```
 
 This will:
+
 - Install npm dependencies
 - Install iOS pods
 
 3. Start Metro bundler:
+
 ```bash
 yarn start
 ```
 
 4. Run on iOS:
+
 ```bash
 yarn ios
 ```
 
 5. Run on Android:
+
 ```bash
 yarn android
 ```
@@ -337,6 +360,7 @@ Use the following aliases for cleaner imports:
 - `@test-utils` - `./src/test-utils`
 
 Example:
+
 ```typescript
 // ❌ Bad
 import { Button } from '../../../components/Button';
@@ -427,25 +451,30 @@ describe('MyComponent', () => {
 The project uses GitHub Actions for continuous integration:
 
 **Lint & Type Check:**
+
 - Runs ESLint
 - Runs TypeScript type checking
 
 **Test:**
+
 - Runs Jest tests with coverage
 - Uploads coverage to Codecov
 - Uploads coverage artifacts
 
 **Build Android:**
+
 - Builds debug APK
 - Caches Gradle dependencies
 
 **Build iOS:**
+
 - Builds for iOS simulator
 - Installs CocoaPods dependencies
 
 ### Pre-commit Hooks
 
 Husky runs the following checks before each commit:
+
 - Linter (ESLint)
 - Type checking (TypeScript)
 - Tests (Jest)
@@ -457,6 +486,7 @@ If any check fails, the commit is blocked.
 ### Hermes
 
 Hermes is enabled by default for better performance:
+
 - Faster app startup
 - Reduced memory usage
 - Smaller bundle size
@@ -464,6 +494,7 @@ Hermes is enabled by default for better performance:
 ### MMKV
 
 MMKV is used instead of AsyncStorage:
+
 - 30x faster read/write operations
 - Synchronous API
 - Encryption support
@@ -475,6 +506,7 @@ Flipper is enabled in debug mode only. It's automatically disabled in release bu
 ### Reanimated 4
 
 Reanimated 4 with Worklets provides:
+
 - 60 FPS animations
 - Runs on UI thread
 - Better performance than Animated API
