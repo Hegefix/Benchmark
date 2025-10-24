@@ -1,16 +1,8 @@
 import React from 'react';
+import { View } from 'react-native';
 import { render } from '@test-utils';
 import { SettingRow } from '../SettingRow';
-
-// Mock useTheme hook
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      text: '#000000',
-      textSecondary: '#666666',
-    },
-  }),
-}));
+import { useTheme } from '@hooks';
 
 describe('SettingRow', () => {
   it('should render label and value correctly', () => {
@@ -29,37 +21,34 @@ describe('SettingRow', () => {
     expect(getByText('0.82.1')).toBeTruthy();
   });
 
-  it('should render with long text', () => {
-    const { getByText } = render(
-      <SettingRow label="Long Label Text Here" value="Long Value Text Here" />,
+  it('should render accessory content when provided', () => {
+    const { getByTestId, queryByText } = render(
+      <SettingRow
+        label="Appearance"
+        accessory={<View testID="accessory" />}
+        value="Should not render"
+      />,
     );
 
-    expect(getByText('Long Label Text Here')).toBeTruthy();
-    expect(getByText('Long Value Text Here')).toBeTruthy();
+    expect(getByTestId('accessory')).toBeTruthy();
+    expect(queryByText('Should not render')).toBeNull();
   });
 
-  it('should render with special characters', () => {
-    const { getByText } = render(
-      <SettingRow label="Node.js" value="20.19.5" />,
-    );
+  it('should support dark mode colors', () => {
+    const DarkModeWrapper = ({ children }: { children: React.ReactNode }) => {
+      const { setPreference } = useTheme();
 
-    expect(getByText('Node.js')).toBeTruthy();
-    expect(getByText('20.19.5')).toBeTruthy();
-  });
+      React.useEffect(() => {
+        setPreference('dark');
+      }, [setPreference]);
 
-  it('should render with dark mode colors', () => {
-    jest.resetModules();
-    jest.doMock('@hooks', () => ({
-      useTheme: () => ({
-        colors: {
-          text: '#ffffff',
-          textSecondary: '#a0a0a0',
-        },
-      }),
-    }));
+      return <>{children}</>;
+    };
 
     const { getByText } = render(
-      <SettingRow label="Dark Mode" value="Enabled" />,
+      <DarkModeWrapper>
+        <SettingRow label="Dark Mode" value="Enabled" />
+      </DarkModeWrapper>,
     );
 
     expect(getByText('Dark Mode')).toBeTruthy();

@@ -1,6 +1,7 @@
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   WelcomeScreen,
   HomeScreen,
@@ -12,6 +13,10 @@ import { DrawerContent } from '@components';
 import type { RootStackParamList, DrawerParamList } from '@types';
 
 // Define the Drawer Navigator (Main screens with drawer access to Settings)
+const withDrawerIcon = (name: string) => ({ color, size }: { color: string; size: number }) => (
+  <MaterialCommunityIcons name={name} size={size} color={color} />
+);
+
 const MainDrawer = createDrawerNavigator<DrawerParamList>({
   initialRouteName: 'Home',
   screenOptions: {
@@ -26,11 +31,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
       options: {
         title: 'Benchmark',
         drawerLabel: 'Home',
-        drawerIcon: ({ color, size }) => {
-          const Icon =
-            require('react-native-vector-icons/MaterialCommunityIcons').default;
-          return <Icon name="home" size={size} color={color} />;
-        },
+        drawerIcon: withDrawerIcon('home'),
       },
     },
     Reanimated: {
@@ -38,11 +39,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
       options: {
         title: 'Reanimated',
         drawerLabel: 'Reanimated',
-        drawerIcon: ({ color, size }) => {
-          const Icon =
-            require('react-native-vector-icons/MaterialCommunityIcons').default;
-          return <Icon name="animation" size={size} color={color} />;
-        },
+        drawerIcon: withDrawerIcon('animation'),
       },
     },
     TurboModules: {
@@ -50,11 +47,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
       options: {
         title: 'Turbo Modules',
         drawerLabel: 'Turbo Modules',
-        drawerIcon: ({ color, size }) => {
-          const Icon =
-            require('react-native-vector-icons/MaterialCommunityIcons').default;
-          return <Icon name="lightning-bolt" size={size} color={color} />;
-        },
+        drawerIcon: withDrawerIcon('lightning-bolt'),
       },
     },
     Settings: {
@@ -62,11 +55,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
       options: {
         headerTitle: '',
         drawerLabel: 'Settings',
-        drawerIcon: ({ color, size }) => {
-          const Icon =
-            require('react-native-vector-icons/MaterialCommunityIcons').default;
-          return <Icon name="cog" size={size} color={color} />;
-        },
+        drawerIcon: withDrawerIcon('cog'),
       },
     },
   },
