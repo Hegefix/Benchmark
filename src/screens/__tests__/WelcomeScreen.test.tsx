@@ -1,5 +1,8 @@
 import React from 'react';
+
+import { ROUTES } from '@constants';
 import { render, fireEvent } from '@test-utils';
+
 import { WelcomeScreen } from '../WelcomeScreen';
 
 const mockNavigate = jest.fn();
@@ -57,6 +60,6 @@ describe('WelcomeScreen', () => {
     const button = getByText('Get Started');
 
     fireEvent.press(button);
-    expect(mockNavigate).toHaveBeenCalledWith('MainDrawer');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.MAIN_DRAWER);
   });
 });

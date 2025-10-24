@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@app/*": ["src/*"],
+      "@app": ["src"],
       "@screens/*": ["src/screens/*"],
       "@screens": ["src/screens"],
       "@components/*": ["src/components/*"],
@@ -17,10 +19,28 @@
       "@types": ["src/types"],
       "@constants/*": ["src/constants/*"],
       "@constants": ["src/constants"],
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme"],
+      "@storage/*": ["src/storage/*"],
+      "@storage": ["src/storage"],
+      "@assets/*": ["src/assets/*"],
+      "@assets": ["src/assets"],
       "@test-utils": ["src/test-utils"],
       "@test-utils/*": ["src/test-utils/*"]
-    }
+    },
+    // ============================================================================
+    // STRICT TYPE CHECKING
+    // ============================================================================
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["**/node_modules", "**/Pods"]
+  "exclude": ["**/node_modules", "**/Pods", "**/__mocks__"]
 }

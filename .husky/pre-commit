@@ -3,6 +3,10 @@
 
 echo "🔍 Running pre-commit checks..."
 
+# Validate branch name
+echo "🌿 Validating branch name..."
+node scripts/validate-branch-name.js
+
 # Run lint-staged (linter + prettier on staged files)
 echo "📝 Checking linter and formatting..."
 npx lint-staged
