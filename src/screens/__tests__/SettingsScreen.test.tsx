@@ -2,32 +2,6 @@ import React from 'react';
 import { render } from '@test-utils';
 import { SettingsScreen } from '../SettingsScreen';
 
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      text: '#000000',
-      background: '#ffffff',
-      card: '#f5f5f5',
-    },
-  }),
-}));
-
-jest.mock('@components', () => ({
-  ScreenContainer: ({ children }: any) => {
-    const { View } = require('react-native');
-    return <View>{children}</View>;
-  },
-  SettingRow: ({ label, value }: any) => {
-    const { Text, View } = require('react-native');
-    return (
-      <View>
-        <Text>{label}</Text>
-        <Text>{value}</Text>
-      </View>
-    );
-  },
-}));
-
 describe('SettingsScreen', () => {
   it('should render screen title', () => {
     const { getByText } = render(<SettingsScreen />);
@@ -37,6 +11,13 @@ describe('SettingsScreen', () => {
   it('should render About section title', () => {
     const { getByText } = render(<SettingsScreen />);
     expect(getByText('About')).toBeTruthy();
+  });
+
+  it('should render appearance controls', () => {
+    const { getByText } = render(<SettingsScreen />);
+    expect(getByText('Appearance')).toBeTruthy();
+    expect(getByText('Dark Mode')).toBeTruthy();
+    expect(getByText('Use system theme')).toBeTruthy();
   });
 
   it('should render Learning Topics section title', () => {

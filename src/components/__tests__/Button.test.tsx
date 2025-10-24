@@ -2,16 +2,6 @@ import React from 'react';
 import { render, fireEvent } from '@test-utils';
 import { Button } from '../Button';
 
-// Mock useTheme hook
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      primary: '#007AFF',
-      primaryLight: '#007AFF20',
-    },
-  }),
-}));
-
 describe('Button', () => {
   it('should render correctly with title', () => {
     const { getByText } = render(

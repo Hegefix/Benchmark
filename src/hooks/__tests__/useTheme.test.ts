@@ -48,6 +48,7 @@ describe('useTheme', () => {
     expect(result.current.colors).toHaveProperty('card');
     expect(result.current.colors).toHaveProperty('primary');
     expect(result.current.colors).toHaveProperty('primaryLight');
+    expect(result.current.colors).toHaveProperty('onPrimary');
     expect(result.current.colors).toHaveProperty('success');
     expect(result.current.colors).toHaveProperty('successLight');
   });

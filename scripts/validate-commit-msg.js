@@ -11,7 +11,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 
 // Get commit message file path
 const msgPath = process.argv[2] || '.git/COMMIT_EDITMSG';

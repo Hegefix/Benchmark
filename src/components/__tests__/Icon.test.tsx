@@ -2,16 +2,6 @@ import React from 'react';
 import { render } from '@test-utils';
 import { Icon } from '../Icon';
 
-// Mock useTheme hook
-jest.mock('@hooks', () => ({
-  useTheme: () => ({
-    colors: {
-      text: '#000000',
-      primary: '#007AFF',
-    },
-  }),
-}));
-
 describe('Icon', () => {
   it('should render correctly with name', () => {
     const { getByTestId } = render(<Icon name="home" />);
