@@ -2,6 +2,9 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { DrawerContent } from '@components';
+import { ROUTES } from '@constants';
 import {
   WelcomeScreen,
   HomeScreen,
@@ -9,7 +12,6 @@ import {
   TurboModulesScreen,
   SettingsScreen,
 } from '@screens';
-import { DrawerContent } from '@components';
 import type { RootStackParamList, DrawerParamList } from '@types';
 
 // Define the Drawer Navigator (Main screens with drawer access to Settings)
@@ -18,7 +20,7 @@ const withDrawerIcon = (name: string) => ({ color, size }: { color: string; size
 );
 
 const MainDrawer = createDrawerNavigator<DrawerParamList>({
-  initialRouteName: 'Home',
+  initialRouteName: ROUTES.HOME,
   screenOptions: {
     drawerPosition: 'right',
     drawerType: 'front',
@@ -26,7 +28,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
   },
   drawerContent: props => <DrawerContent {...props} />,
   screens: {
-    Home: {
+    [ROUTES.HOME]: {
       screen: HomeScreen,
       options: {
         title: 'Benchmark',
@@ -34,7 +36,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
         drawerIcon: withDrawerIcon('home'),
       },
     },
-    Reanimated: {
+    [ROUTES.REANIMATED]: {
       screen: ReanimatedScreen,
       options: {
         title: 'Reanimated',
@@ -42,7 +44,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
         drawerIcon: withDrawerIcon('animation'),
       },
     },
-    TurboModules: {
+    [ROUTES.TURBO_MODULES]: {
       screen: TurboModulesScreen,
       options: {
         title: 'Turbo Modules',
@@ -50,7 +52,7 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
         drawerIcon: withDrawerIcon('lightning-bolt'),
       },
     },
-    Settings: {
+    [ROUTES.SETTINGS]: {
       screen: SettingsScreen,
       options: {
         headerTitle: '',
@@ -63,19 +65,19 @@ const MainDrawer = createDrawerNavigator<DrawerParamList>({
 
 // Define the Root Stack Navigator (Welcome -> Drawer)
 const RootStack = createNativeStackNavigator<RootStackParamList>({
-  initialRouteName: 'Welcome',
+  initialRouteName: ROUTES.WELCOME,
   screenOptions: {
     headerBackButtonDisplayMode: 'minimal',
   },
   screens: {
-    Welcome: {
+    [ROUTES.WELCOME]: {
       screen: WelcomeScreen,
       options: {
         title: 'Welcome',
         headerShown: false,
       },
     },
-    MainDrawer: {
+    [ROUTES.MAIN_DRAWER]: {
       screen: MainDrawer,
       options: {
         headerShown: false,

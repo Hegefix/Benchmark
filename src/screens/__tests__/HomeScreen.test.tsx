@@ -1,5 +1,8 @@
 import React from 'react';
+
+import { ROUTES } from '@constants';
 import { render, fireEvent } from '@test-utils';
+
 import { HomeScreen } from '../HomeScreen';
 
 const mockNavigate = jest.fn();
@@ -40,12 +43,12 @@ describe('HomeScreen', () => {
   it('should navigate to Reanimated when button is pressed', () => {
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Reanimated Examples'));
-    expect(mockNavigate).toHaveBeenCalledWith('Reanimated');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.REANIMATED);
   });
 
   it('should navigate to TurboModules when button is pressed', () => {
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Turbo Modules'));
-    expect(mockNavigate).toHaveBeenCalledWith('TurboModules');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.TURBO_MODULES);
   });
 });

@@ -1,13 +1,20 @@
+# Dependencies
 node_modules/
-coverage/
 vendor/
-ios/
-android/
-*.lock
-*.log
-.git/
-.vscode/
-.idea/
+
+# Build outputs
 dist/
 build/
+coverage/
 
+# Native
+android/
+ios/
+
+# Generated
+.expo/
+.expo-shared/
+
+# Misc
+.DS_Store
+*.log
