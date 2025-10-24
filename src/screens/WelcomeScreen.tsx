@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
-import { Button, ScreenContainer } from '@components';
+import { Button, ScreenContainer, Icon } from '@components';
 import { useTheme } from '@hooks';
 import type { RootStackParamList } from '@types';
 
@@ -13,6 +13,8 @@ export const WelcomeScreen = () => {
   return (
     <ScreenContainer>
       <View style={styles.content}>
+        <Icon name="hand-wave" size="xl" color={colors.primary} />
+
         <Text style={[styles.title, { color: colors.text }]}>
           Welcome to Benchmark
         </Text>

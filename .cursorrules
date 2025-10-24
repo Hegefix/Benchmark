@@ -49,6 +49,7 @@ export const Screen = () => {
 - ❌ NEVER duplicate code (especially TouchableOpacity buttons)
 - ✅ Create reusable components in `src/components/`
 - ✅ Use the existing `Button` component for all buttons
+- ✅ Use the existing `Icon` component for all icons
 - ✅ One file = one component (extract nested components to separate files)
 
 ### Import Aliases
@@ -61,6 +62,7 @@ export const Screen = () => {
   - `@utils` → `./src/utils`
   - `@types` → `./src/types`
   - `@constants` → `./src/constants`
+  - `@test-utils` → `./src/test-utils`
 
 ```tsx
 // ❌ Bad
@@ -68,6 +70,25 @@ import { Button } from '../../../components/Button';
 
 // ✅ Good
 import { Button } from '@components';
+```
+
+### Icons
+
+- ✅ Use the `Icon` component from `@components`
+- ✅ Use MaterialCommunityIcons (6,000+ icons)
+- ✅ Use preset sizes: `xs`, `sm`, `md`, `lg`, `xl`
+- ✅ Browse icons at [materialdesignicons.com](https://materialdesignicons.com)
+- ❌ NEVER import icon libraries directly
+
+```tsx
+// ❌ Bad
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+<MaterialCommunityIcons name="home" size={24} />
+
+// ✅ Good
+import { Icon } from '@components';
+<Icon name="home" size="md" />
+<Icon name="account" size={32} color={colors.primary} />
 ```
 
 ### Safe Areas

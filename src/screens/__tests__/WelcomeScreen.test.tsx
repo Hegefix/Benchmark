@@ -26,6 +26,10 @@ jest.mock('@components', () => ({
     const { View } = require('react-native');
     return <View>{children}</View>;
   },
+  Icon: ({ name }: any) => {
+    const { Text } = require('react-native');
+    return <Text testID={`icon-${name}`}>{name}</Text>;
+  },
 }));
 
 describe('WelcomeScreen', () => {

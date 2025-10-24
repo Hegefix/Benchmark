@@ -1,0 +1,13 @@
+node_modules/
+coverage/
+vendor/
+ios/
+android/
+*.lock
+*.log
+.git/
+.vscode/
+.idea/
+dist/
+build/
+

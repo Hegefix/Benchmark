@@ -15,6 +15,7 @@ A React Native learning project focused on **React Native Reanimated** and **Tur
 - **React**: 19.1.1
 - **React Navigation**: v7 (Static API)
 - **React Native Reanimated**: 3.19.3
+- **React Native Vector Icons**: 9.2.0 (MaterialCommunityIcons)
 - **TypeScript**: 5.x
 - **Node.js**: 20.19.5 (managed via nvm)
 
@@ -24,6 +25,7 @@ A React Native learning project focused on **React Native Reanimated** and **Tur
 src/
 ├── components/        # Reusable UI components
 │   ├── Button.tsx
+│   ├── Icon.tsx
 │   ├── ScreenContainer.tsx
 │   ├── SettingRow.tsx
 │   └── index.ts
@@ -41,6 +43,7 @@ src/
 │   └── index.ts
 ├── constants/       # App-wide constants
 │   ├── colors.json
+│   ├── sizes.ts
 │   └── index.ts
 ├── utils/           # Utility functions
 └── types/           # TypeScript type definitions
@@ -49,9 +52,10 @@ src/
 ## 🎨 Features
 
 - ✅ **Navigation**: React Navigation v7 with Native Stack Navigator
+- ✅ **Icons**: MaterialCommunityIcons with 6,000+ beautiful icons
 - ✅ **Theme Support**: Light/Dark mode with centralized color management
 - ✅ **Import Aliases**: Clean imports using Babel module resolver (`@screens`, `@components`, etc.)
-- ✅ **Reusable Components**: Button, ScreenContainer, SettingRow
+- ✅ **Reusable Components**: Button, Icon, ScreenContainer, SettingRow
 - ✅ **Type Safety**: Full TypeScript support
 - 🚧 **Reanimated Examples**: Coming soon
 - 🚧 **Turbo Modules**: Coming soon
@@ -142,6 +146,28 @@ const MyComponent = () => {
   const { colors, isDarkMode } = useTheme();
   return <View style={{ backgroundColor: colors.background }} />;
 };
+```
+
+## 🎭 Icons
+
+The project uses **MaterialCommunityIcons** from `react-native-vector-icons`:
+
+- **6,000+ icons** available
+- Browse all icons: [materialdesignicons.com](https://materialdesignicons.com)
+- Custom `Icon` component with theme integration
+- Preset sizes: `xs` (16px), `sm` (20px), `md` (24px), `lg` (32px), `xl` (48px)
+
+```tsx
+import { Icon } from '@components';
+
+// Using preset size
+<Icon name="home" size="md" />
+
+// Using custom size and color
+<Icon name="account" size={32} color="#007AFF" />
+
+// Theme-aware (uses theme text color by default)
+<Icon name="cog" size="lg" />
 ```
 
 ## 🔧 Available Scripts
