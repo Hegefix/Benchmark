@@ -88,6 +88,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@theme/**",
+            "group": "internal"
+          },
+          {
             "pattern": "@assets/**",
             "group": "internal"
           }

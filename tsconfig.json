@@ -19,6 +19,8 @@
       "@types": ["src/types"],
       "@constants/*": ["src/constants/*"],
       "@constants": ["src/constants"],
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme"],
       "@assets/*": ["src/assets/*"],
       "@assets": ["src/assets"],
       "@test-utils": ["src/test-utils"],

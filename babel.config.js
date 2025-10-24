@@ -28,6 +28,7 @@ module.exports = {
           '@utils': './src/utils',
           '@types': './src/types',
           '@constants': './src/constants',
+          '@theme': './src/theme',
           '@assets': './src/assets',
           '@test-utils': './src/test-utils',
         },
