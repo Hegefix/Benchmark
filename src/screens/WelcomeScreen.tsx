@@ -25,7 +25,7 @@ export const WelcomeScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Get Started"
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('MainDrawer')}
             variant="primary"
           />
         </View>

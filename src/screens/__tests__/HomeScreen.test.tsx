@@ -57,11 +57,6 @@ describe('HomeScreen', () => {
     expect(getByText('Turbo Modules')).toBeTruthy();
   });
 
-  it('should render Settings button', () => {
-    const { getByText } = render(<HomeScreen />);
-    expect(getByText('Settings')).toBeTruthy();
-  });
-
   it('should navigate to Reanimated when button is pressed', () => {
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Reanimated Examples'));
@@ -72,11 +67,5 @@ describe('HomeScreen', () => {
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Turbo Modules'));
     expect(mockNavigate).toHaveBeenCalledWith('TurboModules');
-  });
-
-  it('should navigate to Settings when button is pressed', () => {
-    const { getByText } = render(<HomeScreen />);
-    fireEvent.press(getByText('Settings'));
-    expect(mockNavigate).toHaveBeenCalledWith('Settings');
   });
 });

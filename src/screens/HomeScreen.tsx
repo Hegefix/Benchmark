@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import { Button, ScreenContainer, Icon } from '@components';
 import { useTheme } from '@hooks';
-import type { RootStackParamList } from '@types';
+import type { DrawerParamList } from '@types';
 
 export const HomeScreen = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<DrawerParamList>>();
   const { colors } = useTheme();
 
   return (
@@ -22,7 +22,6 @@ export const HomeScreen = () => {
 
         <View style={styles.buttonContainer}>
           <View style={styles.buttonRow}>
-            <Icon name="animation" size="md" color={colors.primary} />
             <Button
               title="Reanimated Examples"
               onPress={() => navigation.navigate('Reanimated')}
@@ -32,20 +31,9 @@ export const HomeScreen = () => {
           </View>
 
           <View style={styles.buttonRow}>
-            <Icon name="lightning-bolt" size="md" color={colors.success} />
             <Button
               title="Turbo Modules"
               onPress={() => navigation.navigate('TurboModules')}
-              variant="primary"
-              style={styles.buttonWithIcon}
-            />
-          </View>
-
-          <View style={styles.buttonRow}>
-            <Icon name="cog" size="md" color={colors.text} />
-            <Button
-              title="Settings"
-              onPress={() => navigation.navigate('Settings')}
               variant="primary"
               style={styles.buttonWithIcon}
             />

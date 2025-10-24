@@ -5,6 +5,10 @@
 
 export type RootStackParamList = {
   Welcome: undefined;
+  MainDrawer: undefined;
+};
+
+export type DrawerParamList = {
   Home: undefined;
   Reanimated: undefined;
   TurboModules: undefined;

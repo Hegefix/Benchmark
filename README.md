@@ -13,8 +13,10 @@ A React Native learning project focused on **React Native Reanimated** and **Tur
 
 - **React Native**: 0.82.1
 - **React**: 19.1.1
-- **React Navigation**: v7 (Static API)
-- **React Native Reanimated**: 3.19.3
+- **React Navigation**: v7 (Static API, Stack + Drawer)
+- **React Native Reanimated**: 4.1.3
+- **React Native Worklets**: 0.6.1
+- **React Native Gesture Handler**: 2.29.0
 - **React Native Vector Icons**: 9.2.0 (MaterialCommunityIcons)
 - **TypeScript**: 5.x
 - **Node.js**: 20.19.5 (managed via nvm)
@@ -51,11 +53,12 @@ src/
 
 ## 🎨 Features
 
-- ✅ **Navigation**: React Navigation v7 with Native Stack Navigator
+- ✅ **Navigation**: React Navigation v7 with Stack + Drawer Navigator
+- ✅ **Drawer Menu**: Side drawer with user info and settings access
 - ✅ **Icons**: MaterialCommunityIcons with 6,000+ beautiful icons
 - ✅ **Theme Support**: Light/Dark mode with centralized color management
 - ✅ **Import Aliases**: Clean imports using Babel module resolver (`@screens`, `@components`, etc.)
-- ✅ **Reusable Components**: Button, Icon, ScreenContainer, SettingRow
+- ✅ **Reusable Components**: Button, Icon, ScreenContainer, SettingRow, CustomDrawerContent
 - ✅ **Type Safety**: Full TypeScript support
 - 🚧 **Reanimated Examples**: Coming soon
 - 🚧 **Turbo Modules**: Coming soon

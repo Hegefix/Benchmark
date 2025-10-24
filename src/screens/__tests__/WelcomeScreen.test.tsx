@@ -52,11 +52,11 @@ describe('WelcomeScreen', () => {
     expect(getByText('Get Started')).toBeTruthy();
   });
 
-  it('should navigate to Home when Get Started is pressed', () => {
+  it('should navigate to MainDrawer when Get Started is pressed', () => {
     const { getByText } = render(<WelcomeScreen />);
     const button = getByText('Get Started');
 
     fireEvent.press(button);
-    expect(mockNavigate).toHaveBeenCalledWith('Home');
+    expect(mockNavigate).toHaveBeenCalledWith('MainDrawer');
   });
 });
