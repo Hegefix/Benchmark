@@ -1,197 +1,384 @@
 # Benchmark
 
-A React Native learning project focused on **React Native Reanimated** and **Turbo Modules**.
+A modern React Native application built to learn and demonstrate Reanimated 4, Turbo Modules, and best practices for React Native development.
 
-## 🎯 Project Goals
+## 📋 Table of Contents
 
-- Learn and master React Native Reanimated 3.x animations
-- Explore Turbo Modules and the new React Native architecture
-- Follow best practices for React Native development
-- Build a clean, maintainable codebase
+- [Tech Stack](#tech-stack)
+- [Architecture Decisions](#architecture-decisions)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Project Structure](#project-structure)
+- [Development Guidelines](#development-guidelines)
+- [Testing](#testing)
+- [CI/CD](#cicd)
+- [Performance](#performance)
+- [Troubleshooting](#troubleshooting)
 
-## 📱 Tech Stack
+## 🚀 Tech Stack
 
-- **React Native**: 0.82.1
-- **React**: 19.1.1
-- **React Navigation**: v7 (Static API, Stack + Drawer)
-- **React Native Reanimated**: 4.1.3
-- **React Native Worklets**: 0.6.1
-- **React Native Gesture Handler**: 2.29.0
-- **React Native Vector Icons**: 9.2.0 (MaterialCommunityIcons)
-- **TypeScript**: 5.x
-- **Node.js**: 20.19.5 (managed via nvm)
+- **React Native** 0.82.1
+- **React** 19.1.1
+- **TypeScript** 5.8.3 (strict mode)
+- **React Navigation** v7 (Static API)
+- **Reanimated** 4.1.3
+- **React Native Worklets** 0.6.1
+- **React Native Gesture Handler** 2.29.0
+- **MMKV** 4.0.0 (high-performance storage)
+- **React Native Vector Icons** 9.2.0
 
-## 🏗️ Project Structure
+### Dev Tools
 
+- **ESLint** 8.57.1 with strict rules
+- **Prettier** 2.8.8
+- **Jest** 29.6.3 with React Native Testing Library
+- **Husky** 9.1.7 for pre-commit hooks
+- **lint-staged** 16.2.6
+
+## 🏗️ Architecture Decisions
+
+### 1. New Architecture (Fabric + TurboModules)
+
+**Why:** The New Architecture provides significant performance improvements and enables modern React Native features.
+
+**Implementation:**
+- Android: `newArchEnabled=true` in `android/gradle.properties`
+- iOS: `ENV['RCT_NEW_ARCH_ENABLED'] = '1'` in `ios/Podfile`
+
+**Benefits:**
+- Improved rendering performance with Fabric
+- Synchronous native module calls with TurboModules
+- Better support for concurrent React features
+- Required for Reanimated 4
+
+### 2. Hermes JavaScript Engine
+
+**Why:** Hermes is optimized for React Native and provides better performance on Android.
+
+**Implementation:**
+- `hermesEnabled=true` in `android/gradle.properties`
+
+**Benefits:**
+- Faster app startup time
+- Reduced memory usage
+- Smaller APK size
+- Better overall performance
+
+### 3. Babel Plugin Order
+
+**Why:** Babel plugins must be ordered correctly for proper transformation.
+
+**Implementation:**
+- Module resolver plugins come first
+- `react-native-worklets/plugin` must be last
+- Documented with comments in `babel.config.js`
+
+**Critical:** Reanimated/Worklets plugin MUST be the last plugin in the array.
+
+### 4. Strict TypeScript Configuration
+
+**Why:** Catch more bugs at compile time and improve code quality.
+
+**Implementation:**
+```json
+{
+  "strict": true,
+  "noUncheckedIndexedAccess": true,
+  "exactOptionalPropertyTypes": true,
+  "noImplicitOverride": true,
+  "noImplicitReturns": true,
+  "noFallthroughCasesInSwitch": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true
+}
 ```
-src/
-├── components/        # Reusable UI components
-│   ├── Button.tsx
-│   ├── Icon.tsx
-│   ├── ScreenContainer.tsx
-│   ├── SettingRow.tsx
-│   └── index.ts
-├── screens/          # Full screen components
-│   ├── WelcomeScreen.tsx
-│   ├── HomeScreen.tsx
-│   ├── ReanimatedScreen.tsx
-│   ├── TurboModulesScreen.tsx
-│   ├── SettingsScreen.tsx
-│   └── index.ts
-├── navigation/       # Navigation configuration
-│   └── RootNavigator.tsx
-├── hooks/           # Custom React hooks
-│   ├── useTheme.ts
-│   └── index.ts
-├── constants/       # App-wide constants
-│   ├── colors.json
-│   ├── sizes.ts
-│   └── index.ts
-├── utils/           # Utility functions
-└── types/           # TypeScript type definitions
-```
 
-## 🎨 Features
+**Benefits:**
+- Safer array/object access
+- Stricter optional property handling
+- Catch more potential runtime errors
 
-- ✅ **Navigation**: React Navigation v7 with Stack + Drawer Navigator
-- ✅ **Drawer Menu**: Side drawer with user info and settings access
-- ✅ **Icons**: MaterialCommunityIcons with 6,000+ beautiful icons
-- ✅ **Theme Support**: Light/Dark mode with centralized color management
-- ✅ **Import Aliases**: Clean imports using Babel module resolver (`@screens`, `@components`, etc.)
-- ✅ **Reusable Components**: Button, Icon, ScreenContainer, SettingRow, CustomDrawerContent
-- ✅ **Type Safety**: Full TypeScript support
-- 🚧 **Reanimated Examples**: Coming soon
-- 🚧 **Turbo Modules**: Coming soon
+### 5. ESLint with Import Ordering
 
-## 🚀 Getting Started
+**Why:** Consistent code style and organized imports improve maintainability.
+
+**Implementation:**
+- `eslint-plugin-import` for import ordering
+- Alphabetical sorting within groups
+- Newlines between import groups
+- Path groups for all aliases
+
+**Benefits:**
+- Easier to find imports
+- Consistent code style across team
+- Automatic import organization
+
+### 6. Jest with Path Aliases
+
+**Why:** Consistent import paths between source and test files.
+
+**Implementation:**
+- Module name mapper for all aliases
+- Transform patterns for React Native packages
+- Setup file with mocks
+- Coverage thresholds (80%)
+
+**Benefits:**
+- Same import paths in tests as in source
+- Proper transformation of node_modules
+- Consistent test environment
+
+### 7. Unified Theme Tokens
+
+**Why:** Centralized design system ensures consistency and makes theming easier.
+
+**Implementation:**
+- `src/theme/tokens.ts` with colors, spacing, typography, etc.
+- `useAppTheme()` hook for accessing theme
+- Automatic dark mode support
+
+**Benefits:**
+- Consistent design across app
+- Easy theme switching
+- Type-safe theme access
+- Automatic dark mode
+
+### 8. MMKV Storage
+
+**Why:** AsyncStorage is slow and asynchronous. MMKV is 30x faster with a synchronous API.
+
+**Implementation:**
+- `src/storage/mmkv.ts` with type-safe wrapper
+- `kv` utility for common operations
+- `StorageKeys` enum for type safety
+
+**Benefits:**
+- 30x faster than AsyncStorage
+- Synchronous API (no async/await)
+- Encryption support
+- Smaller bundle size
+
+### 9. GitHub Actions CI
+
+**Why:** Automated testing and building ensures code quality.
+
+**Implementation:**
+- Lint and typecheck job
+- Test job with coverage
+- Android and iOS build jobs
+- Runs on PR and push to main/develop
+
+**Benefits:**
+- Catch issues before merge
+- Automated testing
+- Build verification
+- Coverage tracking
+
+## 🚦 Getting Started
 
 ### Prerequisites
 
-- Node.js 20.19.5 (use nvm: `nvm use`)
+- Node.js 20.19.5 (use `nvm use` to switch)
 - Yarn package manager
-- Xcode (for iOS)
+- Xcode 15+ (for iOS)
 - Android Studio (for Android)
+- CocoaPods (for iOS dependencies)
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository:
+```bash
+git clone https://github.com/Hegefix/Benchmark.git
+cd Benchmark
+```
 
-   ```bash
-   git clone https://github.com/Hegefix/Benchmark.git
-   cd Benchmark
-   ```
+2. Install dependencies:
+```bash
+yarn setup
+```
 
-2. **Install dependencies**
+This will:
+- Install npm dependencies
+- Install iOS pods
 
-   ```bash
-   yarn install
-   ```
+3. Start Metro bundler:
+```bash
+yarn start
+```
 
-3. **Install iOS dependencies**
-   ```bash
-   yarn pods
-   # or manually: cd ios && pod install
-   ```
-
-### Running the App
-
-#### iOS
-
+4. Run on iOS:
 ```bash
 yarn ios
 ```
 
-#### Android
-
+5. Run on Android:
 ```bash
 yarn android
 ```
 
-#### Start Metro Bundler
+## 📜 Available Scripts
 
-```bash
-yarn start
-# or with cache reset
-yarn start --reset-cache
-```
-
-## 📝 Code Style & Best Practices
-
-This project follows strict coding guidelines (see `.cursorrules`):
-
-- ❌ **NO** `React.FC` or `React.FunctionComponent`
-- ❌ **NO** passing navigation as props (use `useNavigation()` hook)
-- ❌ **NO** code duplication (create reusable components)
-- ❌ **NO** unused styles in StyleSheet
-- ❌ **NO** `SafeAreaView` from `react-native` (deprecated)
-- ✅ Use Babel import aliases (`@screens`, `@components`, etc.)
-- ✅ One file = one component
-- ✅ TypeScript for type safety
-- ✅ React Navigation handles safe areas automatically
-
-## 🎨 Theme System
-
-Colors are centralized in `src/constants/colors.json`:
-
-```json
-{
-  "light": { "background": "#ffffff", "text": "#000000", ... },
-  "dark": { "background": "#1a1a1a", "text": "#ffffff", ... }
-}
-```
-
-Use the `useTheme` hook to access colors:
-
-```tsx
-import { useTheme } from '@hooks';
-
-const MyComponent = () => {
-  const { colors, isDarkMode } = useTheme();
-  return <View style={{ backgroundColor: colors.background }} />;
-};
-```
-
-## 🎭 Icons
-
-The project uses **MaterialCommunityIcons** from `react-native-vector-icons`:
-
-- **6,000+ icons** available
-- Browse all icons: [materialdesignicons.com](https://materialdesignicons.com)
-- Custom `Icon` component with theme integration
-- Preset sizes: `xs` (16px), `sm` (20px), `md` (24px), `lg` (32px), `xl` (48px)
-
-```tsx
-import { Icon } from '@components';
-
-// Using preset size
-<Icon name="home" size="md" />
-
-// Using custom size and color
-<Icon name="account" size={32} color="#007AFF" />
-
-// Theme-aware (uses theme text color by default)
-<Icon name="cog" size="lg" />
-```
-
-## 🔧 Available Scripts
+### Development
 
 - `yarn start` - Start Metro bundler
+- `yarn start:reset` - Start Metro with cache reset
 - `yarn ios` - Run on iOS simulator
 - `yarn android` - Run on Android emulator
+
+### Code Quality
+
 - `yarn lint` - Run ESLint
-- `yarn test` - Run tests
-- `yarn test:watch` - Run tests in watch mode
+- `yarn lint:fix` - Run ESLint with auto-fix
+- `yarn typecheck` - Run TypeScript type checking
+- `yarn validate` - Run lint + typecheck + tests
+- `yarn verify` - Alias for validate
+
+### Testing
+
+- `yarn test` - Run Jest tests
+- `yarn test:watch` - Run Jest in watch mode
 - `yarn test:coverage` - Run tests with coverage report
-- `yarn pods` - Install iOS CocoaPods dependencies
+- `yarn test:ci` - Run tests in CI mode
+
+### iOS
+
+- `yarn pods` - Install CocoaPods dependencies
+- `yarn pods:clean` - Clean and reinstall pods
+- `yarn pods:update` - Update and install pods
+- `yarn ios:clean` - Clean Xcode build
+
+### Android
+
+- `yarn android:clean` - Clean Gradle build
+- `yarn android:build` - Build release APK
+
+### Cleanup
+
+- `yarn clean` - Clean build artifacts (keeps node_modules)
+- `yarn clean:all` - Clean everything except .env
+- `yarn clean:modules` - Reinstall node_modules
+
+## 📁 Project Structure
+
+```
+Benchmark/
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # GitHub Actions CI
+├── __mocks__/                  # Global mocks for testing
+│   ├── @react-navigation/
+│   ├── react-native-gesture-handler.js
+│   ├── react-native-reanimated.js
+│   └── react-native-vector-icons.js
+├── android/                    # Android native code
+├── ios/                        # iOS native code
+├── src/
+│   ├── components/             # Reusable UI components
+│   │   ├── Button.tsx
+│   │   ├── Icon.tsx
+│   │   ├── ScreenContainer.tsx
+│   │   ├── SettingRow.tsx
+│   │   ├── DrawerContent.tsx
+│   │   └── __tests__/
+│   ├── constants/              # App-wide constants
+│   │   ├── colors.json
+│   │   └── sizes.ts
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── useTheme.ts
+│   │   └── __tests__/
+│   ├── navigation/             # Navigation configuration
+│   │   ├── RootNavigator.tsx
+│   │   └── __tests__/
+│   ├── screens/                # Screen components
+│   │   ├── WelcomeScreen.tsx
+│   │   ├── HomeScreen.tsx
+│   │   ├── ReanimatedScreen.tsx
+│   │   ├── TurboModulesScreen.tsx
+│   │   ├── SettingsScreen.tsx
+│   │   └── __tests__/
+│   ├── storage/                # MMKV storage utilities
+│   │   ├── mmkv.ts
+│   │   └── index.ts
+│   ├── test-utils/             # Testing utilities
+│   │   └── render.tsx
+│   ├── theme/                  # Theme tokens and utilities
+│   │   ├── tokens.ts
+│   │   ├── useAppTheme.ts
+│   │   └── index.ts
+│   └── types/                  # TypeScript type definitions
+│       ├── navigation.ts
+│       └── index.ts
+├── .eslintrc.json              # ESLint configuration
+├── .eslintignore               # ESLint ignore patterns
+├── babel.config.js             # Babel configuration
+├── jest.config.js              # Jest configuration
+├── jest-setup.js               # Jest setup file
+├── tsconfig.json               # TypeScript configuration
+└── package.json                # Dependencies and scripts
+```
+
+## 🎨 Development Guidelines
+
+### Import Aliases
+
+Use the following aliases for cleaner imports:
+
+- `@app` - `./src`
+- `@screens` - `./src/screens`
+- `@components` - `./src/components`
+- `@navigation` - `./src/navigation`
+- `@hooks` - `./src/hooks`
+- `@utils` - `./src/utils`
+- `@types` - `./src/types`
+- `@constants` - `./src/constants`
+- `@theme` - `./src/theme`
+- `@storage` - `./src/storage`
+- `@assets` - `./src/assets`
+- `@test-utils` - `./src/test-utils`
+
+Example:
+```typescript
+// ❌ Bad
+import { Button } from '../../../components/Button';
+
+// ✅ Good
+import { Button } from '@components';
+```
+
+### Component Guidelines
+
+- ❌ NEVER use `React.FC` or `React.FunctionComponent`
+- ✅ Use regular function declarations
+- ✅ One file = one component
+- ❌ NEVER duplicate code (create reusable components)
+- ❌ NEVER leave unused styles in StyleSheet
+
+### Navigation
+
+- ❌ NEVER pass navigation as a prop
+- ✅ ALWAYS use `useNavigation()` hook
+- ✅ Properly type navigation with `NavigationProp<ParamList>`
+
+### Icons
+
+- ✅ Use the `Icon` component from `@components`
+- ✅ Use MaterialCommunityIcons (6,000+ icons)
+- ✅ Use preset sizes: `xs`, `sm`, `md`, `lg`, `xl`
+- ❌ NEVER import icon libraries directly
+
+### Theme
+
+- ✅ Use `useAppTheme()` hook for theme access
+- ✅ Use theme tokens for colors, spacing, typography
+- ❌ NEVER hardcode colors or spacing values
+
+### Storage
+
+- ✅ Use `kv` utility from `@storage` for data persistence
+- ✅ Use `StorageKeys` enum for type-safe keys
+- ❌ NEVER use AsyncStorage directly
 
 ## 🧪 Testing
-
-This project has comprehensive test coverage using Jest and React Native Testing Library.
-
-### Test Coverage
-
-- **Overall Coverage**: 100% statements, 88.88% branches, 100% functions, 100% lines
-- **Threshold**: 80% minimum for all metrics
 
 ### Running Tests
 
@@ -202,58 +389,198 @@ yarn test
 # Run tests in watch mode
 yarn test:watch
 
-# Run tests with coverage report
+# Run tests with coverage
 yarn test:coverage
+
+# Run tests in CI mode
+yarn test:ci
 ```
 
-### Test Structure
+### Coverage Requirements
 
-```
-__tests__/
-  └── App.test.tsx
-src/
-  ├── components/__tests__/
-  │   ├── Button.test.tsx
-  │   ├── ScreenContainer.test.tsx
-  │   └── SettingRow.test.tsx
-  ├── screens/__tests__/
-  │   ├── WelcomeScreen.test.tsx
-  │   ├── HomeScreen.test.tsx
-  │   ├── ReanimatedScreen.test.tsx
-  │   ├── TurboModulesScreen.test.tsx
-  │   └── SettingsScreen.test.tsx
-  ├── hooks/__tests__/
-  │   └── useTheme.test.ts
-  └── navigation/__tests__/
-      └── RootNavigator.test.tsx
+- 80% minimum for all metrics (statements, branches, functions, lines)
+
+### Writing Tests
+
+```typescript
+import { render, fireEvent } from '@test-utils';
+import { MyComponent } from '../MyComponent';
+
+describe('MyComponent', () => {
+  it('should render correctly', () => {
+    const { getByText } = render(<MyComponent />);
+    expect(getByText('Hello')).toBeTruthy();
+  });
+});
 ```
 
-### What's Tested
+### Mocking
 
-- ✅ All components render correctly
-- ✅ Button interactions and variants
-- ✅ Navigation flows
-- ✅ Theme switching (light/dark mode)
-- ✅ Screen content and layout
-- ✅ Custom hooks behavior
+- Global mocks in `__mocks__/` directory
+- Test-specific mocks override globals when needed
+- Use `@test-utils` for custom render function
 
-## 📚 Learning Resources
+## 🔄 CI/CD
 
-- [React Native Reanimated Docs](https://docs.swmansion.com/react-native-reanimated/)
-- [React Navigation v7 Docs](https://reactnavigation.org/docs/getting-started)
-- [Turbo Modules Guide](https://reactnative.dev/docs/the-new-architecture/pillars-turbomodules)
-- [Testing Guide](./TESTING.md) - Comprehensive testing documentation
+### GitHub Actions
 
-## 🤝 Contributing
+The project uses GitHub Actions for continuous integration:
 
-This is a personal learning project, but suggestions and feedback are welcome!
+**Lint & Type Check:**
+- Runs ESLint
+- Runs TypeScript type checking
 
-## 📄 License
+**Test:**
+- Runs Jest tests with coverage
+- Uploads coverage to Codecov
+- Uploads coverage artifacts
 
-This project is for educational purposes.
+**Build Android:**
+- Builds debug APK
+- Caches Gradle dependencies
 
-## 🙏 Acknowledgments
+**Build iOS:**
+- Builds for iOS simulator
+- Installs CocoaPods dependencies
 
-- React Native community
-- React Navigation team
-- Software Mansion (Reanimated)
+### Pre-commit Hooks
+
+Husky runs the following checks before each commit:
+- Linter (ESLint)
+- Type checking (TypeScript)
+- Tests (Jest)
+
+If any check fails, the commit is blocked.
+
+## ⚡ Performance
+
+### Hermes
+
+Hermes is enabled by default for better performance:
+- Faster app startup
+- Reduced memory usage
+- Smaller bundle size
+
+### MMKV
+
+MMKV is used instead of AsyncStorage:
+- 30x faster read/write operations
+- Synchronous API
+- Encryption support
+
+### Flipper
+
+Flipper is enabled in debug mode only. It's automatically disabled in release builds.
+
+### Reanimated 4
+
+Reanimated 4 with Worklets provides:
+- 60 FPS animations
+- Runs on UI thread
+- Better performance than Animated API
+
+## 🔧 Troubleshooting
+
+### Metro Bundler Issues
+
+```bash
+# Reset Metro cache
+yarn start:reset
+
+# Or manually
+yarn start -- --reset-cache
+```
+
+### iOS Build Issues
+
+```bash
+# Clean and reinstall pods
+yarn pods:clean
+
+# Clean Xcode build
+yarn ios:clean
+
+# Then rebuild
+yarn ios
+```
+
+### Android Build Issues
+
+```bash
+# Clean Gradle
+yarn android:clean
+
+# Then rebuild
+yarn android
+```
+
+### TypeScript Errors
+
+```bash
+# Run type check to see all errors
+yarn typecheck
+
+# Check specific file
+yarn typecheck src/path/to/file.ts
+```
+
+### Linter Errors
+
+```bash
+# Auto-fix linter errors
+yarn lint:fix
+
+# Check specific file
+yarn lint src/path/to/file.ts
+```
+
+### Test Failures
+
+```bash
+# Run tests in watch mode to debug
+yarn test:watch
+
+# Run specific test file
+yarn test src/path/to/__tests__/file.test.ts
+
+# Update snapshots
+yarn test -u
+```
+
+### Node Version Issues
+
+```bash
+# Use the correct Node version
+nvm use
+
+# Or install the required version
+nvm install 20.19.5
+nvm use 20.19.5
+```
+
+### Module Not Found
+
+```bash
+# Reinstall dependencies
+yarn clean:modules
+
+# Or full clean
+yarn clean:all
+yarn setup
+```
+
+## 📝 License
+
+This project is private and not licensed for public use.
+
+## 👥 Contributing
+
+This is a learning project. Contributions are welcome! Please follow the development guidelines and ensure all tests pass before submitting a PR.
+
+## 📞 Support
+
+For issues or questions, please open an issue on GitHub.
+
+---
+
+Built with ❤️ using React Native
