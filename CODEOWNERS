@@ -1,0 +1,24 @@
+# CODEOWNERS file
+# This file defines who must approve PRs that modify certain files
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+# These owners will be requested for review when someone opens a pull request
+*       @Hegefix
+
+# Specific ownership for critical configuration files
+/.github/       @Hegefix
+/package.json   @Hegefix
+/tsconfig.json  @Hegefix
+/babel.config.js @Hegefix
+
+# iOS native code
+/ios/           @Hegefix
+
+# Android native code
+/android/       @Hegefix
+
+# CI/CD and automation
+/.github/workflows/ @Hegefix
+/.husky/        @Hegefix
+

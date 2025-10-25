@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "start": "react-native start",
     "test": "jest",
     "test:watch": "jest --watch",
