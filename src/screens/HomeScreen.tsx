@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { View, StyleSheet } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
 
 import { Button, FeatureScreenLayout } from '@components';
 import { ROUTES } from '@constants';
+
+import type { NavigationProp } from '@react-navigation/native';
 import type { DrawerParamList } from '@types';
 
 export const HomeScreen = () => {

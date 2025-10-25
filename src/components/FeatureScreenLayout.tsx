@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
+
 import { View, Text, StyleSheet } from 'react-native';
 
 import { ScreenContainer, Icon } from '@components';
 import { useTheme } from '@hooks';
+
 import type { IconSize } from '@constants';
 
 interface FeatureScreenLayoutProps {

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render } from '@test-utils';
+
 import { Icon } from '../Icon';
 
 // Mock useTheme hook

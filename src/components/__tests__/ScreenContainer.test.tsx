@@ -1,6 +1,9 @@
 import React from 'react';
-import { render } from '@test-utils';
+
 import { Text } from 'react-native';
+
+import { render } from '@test-utils';
+
 import { ScreenContainer } from '../ScreenContainer';
 
 // Mock useTheme hook

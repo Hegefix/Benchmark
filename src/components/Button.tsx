@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   TouchableOpacity,
   Text,
@@ -6,6 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+
 import { useTheme } from '@hooks';
 
 interface ButtonProps {

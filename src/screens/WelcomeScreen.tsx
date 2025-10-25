@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { View, Text, StyleSheet } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
 
 import { Button, ScreenContainer, Icon } from '@components';
 import { ROUTES } from '@constants';
 import { useTheme } from '@hooks';
+
+import type { NavigationProp } from '@react-navigation/native';
 import type { RootStackParamList } from '@types';
 
 export const WelcomeScreen = () => {

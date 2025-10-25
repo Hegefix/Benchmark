@@ -1,6 +1,6 @@
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { DrawerContent } from '@components';
@@ -12,6 +12,7 @@ import {
   TurboModulesScreen,
   SettingsScreen,
 } from '@screens';
+
 import type { RootStackParamList, DrawerParamList } from '@types';
 
 // Define the Drawer Navigator (Main screens with drawer access to Settings)
