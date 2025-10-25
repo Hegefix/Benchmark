@@ -192,6 +192,6 @@ jobs:
             -scheme Benchmark \
             -configuration Debug \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
             build \
             CODE_SIGNING_ALLOWED=NO
