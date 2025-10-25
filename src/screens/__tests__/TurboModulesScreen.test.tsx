@@ -18,6 +18,16 @@ jest.mock('@components', () => ({
     const { View } = require('react-native');
     return <View>{children}</View>;
   },
+  FeatureScreenLayout: ({ title, description, children }: any) => {
+    const { View, Text } = require('react-native');
+    return (
+      <View>
+        <Text>{title}</Text>
+        <Text>{description}</Text>
+        {children}
+      </View>
+    );
+  },
 }));
 
 describe('TurboModulesScreen', () => {

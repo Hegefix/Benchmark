@@ -53,10 +53,11 @@ describe('WelcomeScreen', () => {
   });
 
   it('should navigate to MainDrawer when Get Started is pressed', () => {
+    const { ROUTES } = require('@constants');
     const { getByText } = render(<WelcomeScreen />);
     const button = getByText('Get Started');
 
     fireEvent.press(button);
-    expect(mockNavigate).toHaveBeenCalledWith('MainDrawer');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.MAIN_DRAWER);
   });
 });
