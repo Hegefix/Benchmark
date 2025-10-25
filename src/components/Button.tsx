@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   TouchableOpacity,
   Text,
@@ -6,6 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+
 import { useTheme } from '@hooks';
 
 interface ButtonProps {
@@ -31,7 +33,7 @@ export const Button = ({
       : [styles.secondaryButton, { backgroundColor: colors.primaryLight }];
   const buttonTextStyle =
     variant === 'primary'
-      ? styles.primaryButtonText
+      ? [styles.primaryButtonText, { color: colors.background }]
       : [styles.secondaryButtonText, { color: colors.primary }];
 
   return (
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   primaryButtonText: {
-    color: '#ffffff',
     fontSize: 18,
     fontWeight: '700',
   },

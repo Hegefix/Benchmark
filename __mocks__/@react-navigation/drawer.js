@@ -2,6 +2,7 @@
 
 // Mock for @react-navigation/drawer
 const React = require('react');
+
 const { View } = require('react-native');
 
 module.exports = {

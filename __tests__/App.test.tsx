@@ -3,8 +3,9 @@
  */
 
 import React from 'react';
-import { render } from '../src/test-utils';
+
 import App from '../App';
+import { render } from '../src/test-utils';
 
 // Mock Navigation component
 jest.mock('@navigation/RootNavigator', () => ({

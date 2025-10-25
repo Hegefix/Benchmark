@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { View, StyleSheet, ViewStyle, StatusBar } from 'react-native';
+
 import { useTheme } from '@hooks';
 
 interface ScreenContainerProps {

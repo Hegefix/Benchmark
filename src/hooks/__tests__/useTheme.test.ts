@@ -1,7 +1,9 @@
-import { renderHook } from '@test-utils';
 import { useColorScheme } from 'react-native';
-import { useTheme } from '../useTheme';
+
 import { colors } from '@constants';
+import { renderHook } from '@test-utils';
+
+import { useTheme } from '../useTheme';
 
 jest.mock('react-native/Libraries/Utilities/useColorScheme');
 

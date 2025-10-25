@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+
 import { Navigation } from '@navigation/RootNavigator';
 
 function App() {
