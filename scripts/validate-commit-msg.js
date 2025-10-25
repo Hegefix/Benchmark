@@ -22,6 +22,10 @@ if (commitMsg.startsWith('Merge')) {
   process.exit(0);
 }
 
+// Extract only the first line (subject) for validation
+// Conventional Commits allows multi-line messages with body and footer
+const commitSubject = commitMsg.split('\n')[0];
+
 // Regex for Conventional Commits: <type>(<scope>): <subject>
 // Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert
 // Scope: Optional, any alphanumeric string, kebab-case recommended
@@ -29,7 +33,7 @@ if (commitMsg.startsWith('Merge')) {
 const commitRegex =
   /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .{1,50}(?<!\.)$/;
 
-if (!commitRegex.test(commitMsg)) {
+if (!commitRegex.test(commitSubject)) {
   console.error(`
 ❌ Invalid commit message format!
 
