@@ -16,6 +16,12 @@ const fs = require('fs');
 const msgPath = process.argv[2] || '.git/COMMIT_EDITMSG';
 const commitMsg = fs.readFileSync(msgPath, 'utf-8').trim();
 
+// Skip merge commits (they start with "Merge")
+if (commitMsg.startsWith('Merge')) {
+  console.log('✅ Merge commit - skipping validation');
+  process.exit(0);
+}
+
 // Regex for Conventional Commits: <type>(<scope>): <subject>
 // Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert
 // Scope: Optional, any alphanumeric string, kebab-case recommended
