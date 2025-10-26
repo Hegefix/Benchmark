@@ -3,14 +3,16 @@
  * Centralized type definitions for React Navigation
  */
 
+import { ROUTES } from '@constants';
+
 export type RootStackParamList = {
-  Welcome: undefined;
-  MainDrawer: undefined;
+  [ROUTES.WELCOME]: undefined;
+  [ROUTES.MAIN_DRAWER]: undefined;
 };
 
 export type DrawerParamList = {
-  Home: undefined;
-  Reanimated: undefined;
-  TurboModules: undefined;
-  Settings: undefined;
+  [ROUTES.HOME]: undefined;
+  [ROUTES.REANIMATED]: undefined;
+  [ROUTES.TURBO_MODULES]: undefined;
+  [ROUTES.SETTINGS]: undefined;
 };

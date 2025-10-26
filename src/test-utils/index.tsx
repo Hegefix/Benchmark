@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import { render, RenderOptions } from '@testing-library/react-native';
 
 // Mock useColorScheme for consistent theme testing

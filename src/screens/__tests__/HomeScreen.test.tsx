@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, fireEvent } from '@test-utils';
+
 import { HomeScreen } from '../HomeScreen';
 
 const mockNavigate = jest.fn();
@@ -30,6 +32,16 @@ jest.mock('@components', () => ({
     const { Text } = require('react-native');
     return <Text testID={`icon-${name}`}>{name}</Text>;
   },
+  FeatureScreenLayout: ({ title, description, children }: any) => {
+    const { View, Text } = require('react-native');
+    return (
+      <View>
+        <Text>{title}</Text>
+        <Text>{description}</Text>
+        {children}
+      </View>
+    );
+  },
 }));
 
 describe('HomeScreen', () => {
@@ -58,14 +70,16 @@ describe('HomeScreen', () => {
   });
 
   it('should navigate to Reanimated when button is pressed', () => {
+    const { ROUTES } = require('@constants');
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Reanimated Examples'));
-    expect(mockNavigate).toHaveBeenCalledWith('Reanimated');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.REANIMATED);
   });
 
   it('should navigate to TurboModules when button is pressed', () => {
+    const { ROUTES } = require('@constants');
     const { getByText } = render(<HomeScreen />);
     fireEvent.press(getByText('Turbo Modules'));
-    expect(mockNavigate).toHaveBeenCalledWith('TurboModules');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.TURBO_MODULES);
   });
 });

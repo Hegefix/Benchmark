@@ -1,7 +1,9 @@
 import React from 'react';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTheme } from '@hooks';
+
 import { ICON_SIZES, IconSize } from '@constants';
+import { useTheme } from '@hooks';
 
 interface IconProps {
   /**

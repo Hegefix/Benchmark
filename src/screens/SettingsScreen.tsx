@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+
 import { SettingRow, ScreenContainer } from '@components';
 import { useTheme } from '@hooks';
 

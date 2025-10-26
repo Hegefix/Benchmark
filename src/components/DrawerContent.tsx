@@ -1,12 +1,15 @@
 import React from 'react';
+
 import { View, Text, StyleSheet } from 'react-native';
+
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import { useTheme } from '@hooks';
+
 import { Icon } from '@components';
+import { useTheme } from '@hooks';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
   const { colors } = useTheme();
