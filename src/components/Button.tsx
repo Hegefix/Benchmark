@@ -16,6 +16,15 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
   style?: ViewStyle;
   textStyle?: TextStyle;
+  /**
+   * Accessibility label for screen readers
+   * Defaults to title if not provided
+   */
+  accessibilityLabel?: string;
+  /**
+   * Whether the button is disabled
+   */
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -24,6 +33,8 @@ export const Button = ({
   variant = 'primary',
   style,
   textStyle,
+  accessibilityLabel,
+  disabled = false,
 }: ButtonProps) => {
   const { colors } = useTheme();
 
@@ -41,6 +52,10 @@ export const Button = ({
       style={[buttonStyle, style]}
       onPress={onPress}
       activeOpacity={0.7}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel || title}
+      accessibilityState={{ disabled }}
     >
       <Text style={[buttonTextStyle, textStyle]}>{title}</Text>
     </TouchableOpacity>

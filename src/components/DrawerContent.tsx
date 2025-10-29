@@ -11,7 +11,24 @@ import {
 import { Icon } from '@components';
 import { useTheme } from '@hooks';
 
-export const DrawerContent = (props: DrawerContentComponentProps) => {
+interface DrawerContentProps extends DrawerContentComponentProps {
+  /**
+   * User name to display in drawer header
+   * @default "John Doe"
+   */
+  userName?: string;
+  /**
+   * User email to display in drawer header
+   * @default "[email protected]"
+   */
+  userEmail?: string;
+}
+
+export const DrawerContent = ({
+  userName = 'John Doe',
+  userEmail = '[email protected]',
+  ...props
+}: DrawerContentProps) => {
   const { colors } = useTheme();
 
   return (
@@ -26,12 +43,16 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
       <View style={[styles.userSection, { borderBottomColor: colors.card }]}>
         <View
           style={[styles.avatarContainer, { backgroundColor: colors.primary }]}
+          accessibilityRole="image"
+          accessibilityLabel={`Avatar for ${userName}`}
         >
           <Icon name="account" size="xl" color={colors.background} />
         </View>
-        <Text style={[styles.userName, { color: colors.text }]}>John Doe</Text>
+        <Text style={[styles.userName, { color: colors.text }]}>
+          {userName}
+        </Text>
         <Text style={[styles.userEmail, { color: colors.textSecondary }]}>
-          [email protected]
+          {userEmail}
         </Text>
       </View>
 

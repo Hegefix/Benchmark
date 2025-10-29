@@ -4,9 +4,14 @@ import { render } from '@test-utils';
 
 import { FeatureScreenLayout } from '../FeatureScreenLayout';
 
+import type {
+  MockIconProps,
+  MockScreenContainerProps,
+} from '@test-utils/types';
+
 // Mock the Icon component
 jest.mock('@components', () => ({
-  Icon: ({ name, size, color }: any) => {
+  Icon: ({ name, size, color }: MockIconProps) => {
     const { Text } = require('react-native');
     return (
       <Text testID={`icon-${name}`}>
@@ -14,7 +19,7 @@ jest.mock('@components', () => ({
       </Text>
     );
   },
-  ScreenContainer: ({ children }: any) => {
+  ScreenContainer: ({ children }: MockScreenContainerProps) => {
     const { View } = require('react-native');
     return <View testID="screen-container">{children}</View>;
   },
