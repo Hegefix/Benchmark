@@ -4,6 +4,8 @@ import { render } from '@test-utils';
 
 import { DrawerContent } from '../DrawerContent';
 
+import type { MockIconProps, MockDrawerContentProps } from '@test-utils/types';
+
 // Mock useTheme hook
 jest.mock('@hooks', () => ({
   useTheme: () => ({
@@ -19,7 +21,7 @@ jest.mock('@hooks', () => ({
 
 // Mock Icon component
 jest.mock('../Icon', () => ({
-  Icon: ({ name, testID }: any) => {
+  Icon: ({ name, testID }: MockIconProps) => {
     const { Text } = require('react-native');
     return <Text testID={testID || `icon-${name}`}>{name}</Text>;
   },
@@ -27,7 +29,7 @@ jest.mock('../Icon', () => ({
 
 // Mock drawer components
 jest.mock('@react-navigation/drawer', () => ({
-  DrawerContentScrollView: ({ children }: any) => {
+  DrawerContentScrollView: ({ children }: { children: React.ReactNode }) => {
     const { View } = require('react-native');
     return <View testID="drawer-scroll-view">{children}</View>;
   },
@@ -37,7 +39,7 @@ jest.mock('@react-navigation/drawer', () => ({
   },
 }));
 
-const mockProps: any = {
+const mockProps: MockDrawerContentProps = {
   state: {
     routes: [],
     index: 0,
@@ -47,8 +49,9 @@ const mockProps: any = {
     type: 'drawer',
     stale: false,
     preloadedRouteKeys: [],
+    default: 'closed',
   },
-  navigation: {},
+  navigation: {} as never,
   descriptors: {},
 };
 
@@ -78,6 +81,18 @@ describe('DrawerContent', () => {
     const { getByText } = render(<DrawerContent {...mockProps} />);
     const userName = getByText('John Doe');
     expect(userName.props.style).toContainEqual({ color: '#000000' });
+  });
+
+  it('should render custom user info when provided', () => {
+    const { getByText } = render(
+      <DrawerContent
+        {...mockProps}
+        userName="Jane Doe"
+        userEmail="[email protected]"
+      />,
+    );
+    expect(getByText('Jane Doe')).toBeTruthy();
+    expect(getByText('[email protected]')).toBeTruthy();
   });
 
   it('should apply theme colors to user email', () => {

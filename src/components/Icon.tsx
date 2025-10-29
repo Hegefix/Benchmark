@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { ICON_SIZES, IconSize } from '@constants';
@@ -22,7 +24,11 @@ interface IconProps {
   /**
    * Additional styles
    */
-  style?: object;
+  style?: ViewStyle | TextStyle | ImageStyle;
+  /**
+   * Accessibility label for screen readers
+   */
+  accessibilityLabel?: string;
 }
 
 /**
@@ -32,7 +38,13 @@ interface IconProps {
  * <Icon name="home" size="md" />
  * <Icon name="account" size={32} color="#007AFF" />
  */
-export const Icon = ({ name, size = 'md', color, style }: IconProps) => {
+export const Icon = ({
+  name,
+  size = 'md',
+  color,
+  style,
+  accessibilityLabel,
+}: IconProps) => {
   const { colors } = useTheme();
 
   // If size is a string (preset), get the value from ICON_SIZES
@@ -44,6 +56,8 @@ export const Icon = ({ name, size = 'md', color, style }: IconProps) => {
       size={iconSize}
       color={color || colors.text}
       style={style}
+      accessibilityLabel={accessibilityLabel || name}
+      accessibilityRole="image"
     />
   );
 };
