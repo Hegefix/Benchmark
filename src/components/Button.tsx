@@ -2,12 +2,12 @@ import React from 'react';
 
 import {
   TouchableOpacity,
-  Text,
   StyleSheet,
   ViewStyle,
   TextStyle,
 } from 'react-native';
 
+import { Typography } from '@components';
 import { useTheme } from '@hooks';
 
 interface ButtonProps {
@@ -57,7 +57,12 @@ export const Button = ({
       accessibilityLabel={accessibilityLabel || title}
       accessibilityState={{ disabled }}
     >
-      <Text style={[buttonTextStyle, textStyle]}>{title}</Text>
+      <Typography
+        variant={variant === 'primary' ? 'button' : 'buttonSmall'}
+        style={[buttonTextStyle, textStyle]}
+      >
+        {title}
+      </Typography>
     </TouchableOpacity>
   );
 };
@@ -69,8 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   primaryButtonText: {
-    fontSize: 18,
-    fontWeight: '700',
+    // Font styles handled by Typography component
   },
   secondaryButton: {
     flex: 1,
@@ -79,7 +83,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   secondaryButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
+    // Font styles handled by Typography component
   },
 });

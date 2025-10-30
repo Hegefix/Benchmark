@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
+import { Typography } from '@components';
 import { useTheme } from '@hooks';
 
 interface SettingRowProps {
@@ -14,10 +15,12 @@ export const SettingRow = ({ label, value }: SettingRowProps) => {
 
   return (
     <View style={styles.row}>
-      <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
-      <Text style={[styles.value, { color: colors.textSecondary }]}>
+      <Typography variant="body" style={{ color: colors.text }}>
+        {label}
+      </Typography>
+      <Typography variant="bodyMedium" style={{ color: colors.textSecondary }}>
         {value}
-      </Text>
+      </Typography>
     </View>
   );
 };
@@ -28,12 +31,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 12,
-  },
-  label: {
-    fontSize: 16,
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: '500',
   },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import { FeatureScreenLayout } from '@components';
+import { FeatureScreenLayout, Typography } from '@components';
 import { useTheme } from '@hooks';
 
 export const ReanimatedScreen = () => {
@@ -16,9 +16,12 @@ export const ReanimatedScreen = () => {
       <View
         style={[styles.placeholder, { backgroundColor: colors.primaryLight }]}
       >
-        <Text style={[styles.placeholderText, { color: colors.primary }]}>
+        <Typography
+          variant="bodyLarge"
+          style={[styles.placeholderText, { color: colors.primary }]}
+        >
           🎨 Animated components coming soon...
-        </Text>
+        </Typography>
       </View>
     </FeatureScreenLayout>
   );
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   placeholderText: {
-    fontSize: 18,
     textAlign: 'center',
   },
 });

@@ -30,6 +30,10 @@ jest.mock('@components', () => ({
       </View>
     );
   },
+  Typography: ({ children }: any) => {
+    const { Text } = require('react-native');
+    return <Text>{children}</Text>;
+  },
 }));
 
 describe('ReanimatedScreen', () => {

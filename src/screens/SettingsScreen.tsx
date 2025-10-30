@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
-import { SettingRow, ScreenContainer } from '@components';
+import { SettingRow, ScreenContainer, Typography } from '@components';
 import { useTheme } from '@hooks';
 
 export const SettingsScreen = () => {
@@ -11,21 +11,23 @@ export const SettingsScreen = () => {
   return (
     <ScreenContainer>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[styles.title, { color: colors.text }]}>Settings</Text>
+        <Typography variant="h1" style={styles.title}>
+          Settings
+        </Typography>
 
         <View style={[styles.section, { backgroundColor: colors.card }]}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>
+          <Typography variant="h3" style={styles.sectionTitle}>
             About
-          </Text>
+          </Typography>
           <SettingRow label="Version" value="1.0.0" />
           <SettingRow label="React Native" value="0.82.1" />
           <SettingRow label="Node.js" value="20.19.5" />
         </View>
 
         <View style={[styles.section, { backgroundColor: colors.card }]}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>
+          <Typography variant="h3" style={styles.sectionTitle}>
             Learning Topics
-          </Text>
+          </Typography>
           <SettingRow label="Reanimated" value="Ready" />
           <SettingRow label="Turbo Modules" value="Ready" />
         </View>
@@ -39,8 +41,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
     marginBottom: 24,
   },
   section: {
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
     marginBottom: 12,
   },
 });
