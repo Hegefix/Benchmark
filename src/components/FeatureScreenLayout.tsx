@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import { ScreenContainer, Icon } from '@components';
+import { ScreenContainer, Icon, Typography } from '@components';
 import { useTheme } from '@hooks';
 
 import type { IconSize } from '@constants';
@@ -31,10 +31,12 @@ export const FeatureScreenLayout = ({
           <Icon name={iconName} size={iconSize} color={colors.primary} />
         )}
 
-        <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
-        <Text style={[styles.description, { color: colors.text }]}>
+        <Typography variant="h2" style={styles.title}>
+          {title}
+        </Typography>
+        <Typography variant="body" style={styles.description}>
           {description}
-        </Text>
+        </Typography>
 
         {children}
       </View>
@@ -50,14 +52,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
     marginBottom: 8,
     marginTop: 16,
     textAlign: 'center',
   },
   description: {
-    fontSize: 16,
     opacity: 0.7,
     marginBottom: 40,
     textAlign: 'center',

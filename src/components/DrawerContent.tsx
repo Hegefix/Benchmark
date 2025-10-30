@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import {
   DrawerContentScrollView,
@@ -8,7 +8,7 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 
-import { Icon } from '@components';
+import { Icon, Typography } from '@components';
 import { useTheme } from '@hooks';
 
 interface DrawerContentProps extends DrawerContentComponentProps {
@@ -48,12 +48,12 @@ export const DrawerContent = ({
         >
           <Icon name="account" size="xl" color={colors.background} />
         </View>
-        <Text style={[styles.userName, { color: colors.text }]}>
+        <Typography variant="h3" style={styles.userName}>
           {userName}
-        </Text>
-        <Text style={[styles.userEmail, { color: colors.textSecondary }]}>
+        </Typography>
+        <Typography variant="bodySmall" style={{ color: colors.textSecondary }}>
           {userEmail}
-        </Text>
+        </Typography>
       </View>
 
       {/* Drawer Items */}
@@ -81,11 +81,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   userName: {
-    fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 4,
-  },
-  userEmail: {
-    fontSize: 14,
   },
 });

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, ScreenContainer, Icon } from '@components';
+import { Button, ScreenContainer, Icon, Typography } from '@components';
 import { ROUTES } from '@constants';
 import { useTheme } from '@hooks';
 
@@ -20,12 +20,12 @@ export const WelcomeScreen = () => {
       <View style={styles.content}>
         <Icon name="hand-wave" size="xl" color={colors.primary} />
 
-        <Text style={[styles.title, { color: colors.text }]}>
+        <Typography variant="h1" style={styles.title}>
           Welcome to Benchmark
-        </Text>
-        <Text style={[styles.subtitle, { color: colors.text }]}>
+        </Typography>
+        <Typography variant="bodyLarge" style={styles.subtitle}>
           Learning Reanimated & Turbo Modules
-        </Text>
+        </Typography>
 
         <View style={styles.buttonContainer}>
           <Button
@@ -47,13 +47,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 18,
     marginBottom: 40,
     textAlign: 'center',
     opacity: 0.7,

@@ -23,6 +23,10 @@ jest.mock('@components', () => ({
     const { View } = require('react-native');
     return <View testID="screen-container">{children}</View>;
   },
+  Typography: ({ children }: any) => {
+    const { Text } = require('react-native');
+    return <Text>{children}</Text>;
+  },
 }));
 
 describe('FeatureScreenLayout', () => {

@@ -32,6 +32,10 @@ jest.mock('@components', () => ({
     const { Text } = require('react-native');
     return <Text testID={`icon-${name}`}>{name}</Text>;
   },
+  Typography: ({ children }: any) => {
+    const { Text } = require('react-native');
+    return <Text>{children}</Text>;
+  },
 }));
 
 describe('WelcomeScreen', () => {
